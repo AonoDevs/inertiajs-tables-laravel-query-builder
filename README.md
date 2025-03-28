@@ -1,8 +1,8 @@
 # Inertia.js Tables for Laravel Query Builder
 
-[![Latest Version on NPM](https://img.shields.io/npm/v/@dootix-developer/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://npmjs.com/package/@dootix-developer/inertiajs-tables-laravel-query-builder)
-[![npm](https://img.shields.io/npm/dt/@dootix-developer/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://www.npmjs.com/package/@dootix-developer/inertiajs-tables-laravel-query-builder)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/protonemedia/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://packagist.org/packages/dootix-developer/inertiajs-tables-laravel-query-builder)
+[![Latest Version on NPM](https://img.shields.io/npm/v/@aonodevs/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://npmjs.com/package/@aonodevs/inertiajs-tables-laravel-query-builder)
+[![npm](https://img.shields.io/npm/dt/@aonodevs/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://www.npmjs.com/package/@aonodevs/inertiajs-tables-laravel-query-builder)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/protonemedia/inertiajs-tables-laravel-query-builder.svg?style=flat-square)](https://packagist.org/packages/aonodevs/inertiajs-tables-laravel-query-builder)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 
 This package provides a *DataTables-like* experience for [Inertia.js](https://inertiajs.com/) with support for searching, filtering, sorting, toggling columns, and pagination. It generates URLs that can be consumed by Spatie's excellent [Laravel Query Builder](https://github.com/spatie/laravel-query-builder) package, with no additional logic needed. The components are styled with [Tailwind CSS 3.0](https://tailwindcss.com/), but it's fully customizable with slots. The data refresh logic is based on Inertia's [Ping CRM demo](https://github.com/inertiajs/pingcrm).
@@ -39,7 +39,7 @@ You need to install both the server-side package and the client-side package. No
 You can install the package via composer:
 
 ```bash
-composer require dootix-developer/inertiajs-tables-laravel-query-builder
+composer require aonodevs/inertiajs-tables-laravel-query-builder
 ```
 
 The package will automatically register the Service Provider which provides a `table` method you can use on an Interia Response.
@@ -275,9 +275,9 @@ class UserIndexController
 You can install the package via either `npm` or `yarn`:
 
 ```bash
-npm install @dootix-developer/inertiajs-tables-laravel-query-builder --save
+npm install @aonodevs/inertiajs-tables-laravel-query-builder --save
 
-yarn add @dootix-developer/inertiajs-tables-laravel-query-builder
+yarn add @aonodevs/inertiajs-tables-laravel-query-builder
 ```
 
 Add the repository path to the `content` array of your [Tailwind configuration file](https://tailwindcss.com/docs/content-configuration). This ensures that the styling also works on production builds.
@@ -285,7 +285,7 @@ Add the repository path to the `content` array of your [Tailwind configuration f
 ```js
 module.exports = {
   content: [
-    './node_modules/@dootix-developer/inertiajs-tables-laravel-query-builder/**/*.{js,vue}',
+    './node_modules/@aonodevs/inertiajs-tables-laravel-query-builder/**/*.{js,vue}',
   ]
 }
 ```
@@ -296,7 +296,7 @@ To use the `Table` component and all its related features, you must import the `
 
 ```vue
 <script setup>
-import { Table } from "@dootix-developer/inertiajs-tables-laravel-query-builder";
+import { Table } from "@aonodevs/inertiajs-tables-laravel-query-builder";
 
 defineProps(["users"])
 </script>
@@ -444,7 +444,7 @@ Lastly, pass the correct `name` property to each table in the Vue template. Opti
 
 ```vue
 <script setup>
-import { Table } from "@dootix-developer/inertiajs-tables-laravel-query-builder";
+import { Table } from "@aonodevs/inertiajs-tables-laravel-query-builder";
 
 defineProps(["companies", "users"])
 </script>
@@ -469,7 +469,7 @@ defineProps(["companies", "users"])
 You can override the default pagination translations with the `setTranslations` method. You can do this in your main JavaScript file:
 
 ```js
-import { setTranslations } from "@dootix-developer/inertiajs-tables-laravel-query-builder";
+import { setTranslations } from "@aonodevs/inertiajs-tables-laravel-query-builder";
 
 setTranslations({
   next: "Next",
