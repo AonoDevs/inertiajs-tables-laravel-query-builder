@@ -1,13 +1,13 @@
 <template>
   <th
     v-show="!cell.hidden"
-    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-200"
+    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300"
   >
     <component
       :is="cell.sortable ? 'button' : 'div'"
       class="w-full"
       :dusk="cell.sortable ? `sort-${cell.key}` : null"
-      @click.prevent="onClick"
+      @click="onClick"
     >
       <span class="flex flex-row items-center">
         <slot name="label"><span class="uppercase">{{ cell.label }}</span></slot>
@@ -57,9 +57,12 @@ const props = defineProps({
     },
 });
 
-function onClick() {
+function onClick(event) {
     if (props.cell.sortable) {
         props.cell.onSort(props.cell.key);
+    }
+    if (!props.cell.clickable) {
+        event.preventDefault()
     }
 }
 </script>

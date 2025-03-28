@@ -1,6 +1,6 @@
 <?php
 
-namespace ProtoneMedia\LaravelQueryBuilderInertiaJs;
+namespace AonoDevs\LaravelQueryBuilderInertiaJs;
 
 use Illuminate\Contracts\Support\Arrayable;
 
@@ -12,6 +12,7 @@ class Column implements Arrayable
         public bool $canBeHidden,
         public bool $hidden,
         public bool $sortable,
+        public bool $clickable,
         public bool|string $sorted
     ) {
     }
@@ -24,6 +25,7 @@ class Column implements Arrayable
             'can_be_hidden' => $this->canBeHidden,
             'hidden'        => $this->hidden,
             'sortable'      => $this->sortable,
+            'clickable'      => $this->clickable,
             'sorted'        => $this->sorted,
         ];
     }

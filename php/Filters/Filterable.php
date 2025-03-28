@@ -1,6 +1,6 @@
 <?php
 
-namespace ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters;
+namespace AonoDevs\LaravelQueryBuilderInertiaJs\Filters;
 
 interface Filterable
 {

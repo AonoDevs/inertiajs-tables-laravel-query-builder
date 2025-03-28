@@ -1,6 +1,6 @@
 <?php
 
-namespace ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters;
+namespace AonoDevs\LaravelQueryBuilderInertiaJs\Filters;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;

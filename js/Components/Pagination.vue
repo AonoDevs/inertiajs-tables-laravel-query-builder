@@ -3,7 +3,7 @@
     v-if="hasPagination"
     class="bg-white dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6"
   >
-    <p v-if="!hasData || pagination.total < 1">
+    <p v-if="!hasData || pagination.total < 1" class="text-gray-500 dark:text-gray-400">
       {{ translations.no_results_found }}
     </p>
 
@@ -17,7 +17,7 @@
         :is="previousPageUrl ? 'a' : 'div'"
         :class="{
           'cursor-not-allowed text-gray-400': !previousPageUrl,
-          'text-gray-700 hover:text-gray-500': previousPageUrl
+          'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': previousPageUrl
         }"
         :href="previousPageUrl"
         :dusk="previousPageUrl ? 'pagination-simple-previous' : null"
@@ -51,11 +51,11 @@
         :is="nextPageUrl ? 'a' : 'div'"
         :class="{
           'cursor-not-allowed text-gray-400 dark:text-gray-700': !nextPageUrl,
-          'text-gray-700 hover:text-gray-500 dark:text-gray-400': nextPageUrl
+          'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': nextPageUrl
         }"
         :href="nextPageUrl"
         :dusk="nextPageUrl ? 'pagination-simple-next' : null"
-        class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-sm font-medium rounded-md bg-white dark:bg-gray-900"
+        class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-sm font-medium rounded-md bg-white dark:bg-gray-800"
         @click.prevent="onClick(nextPageUrl)"
       >
         <span class="hidden sm:inline mr-2">{{ translations.next }}</span>
@@ -101,14 +101,14 @@
       </div>
       <div>
         <nav
-          class="relative z-0 inline-flex rounded-md shadow-xs -space-x-px"
+          class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
           aria-label="Pagination"
         >
           <component
             :is="previousPageUrl ? 'a' : 'div'"
             :class="{
               'cursor-not-allowed text-gray-400': !previousPageUrl,
-              'text-gray-500 hover:bg-gray-50': previousPageUrl
+              'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': previousPageUrl
             }"
             :href="previousPageUrl"
             :dusk="previousPageUrl ? 'pagination-previous' : null"
@@ -160,7 +160,7 @@
             :is="nextPageUrl ? 'a' : 'div'"
             :class="{
               'cursor-not-allowed text-gray-400': !nextPageUrl,
-              'text-gray-500 hover:bg-gray-50': nextPageUrl
+              'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': nextPageUrl
             }"
             :href="nextPageUrl"
             :dusk="nextPageUrl ? 'pagination-next' : null"
@@ -202,7 +202,7 @@ const props = defineProps({
     perPageOptions: {
         type: Array,
         default() {
-            return () => [15, 30, 50, 100];
+            return [15, 30, 50, 100];
         },
         required: false
     },

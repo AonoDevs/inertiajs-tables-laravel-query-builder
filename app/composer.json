@@ -16,7 +16,7 @@
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "protonemedia/inertiajs-tables-laravel-query-builder": "@dev",
+        "aonodevs/inertiajs-tables-laravel-query-builder": "@dev",
         "spatie/laravel-query-builder": "^6.0",
         "tightenco/ziggy": "^2.2.1"
     },

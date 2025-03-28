@@ -1,13 +1,13 @@
 {
-    "name": "dootix-developer/inertiajs-tables-laravel-query-builder",
+    "name": "aonodevs/inertiajs-tables-laravel-query-builder",
     "description": "Inertia.js Front-end Components for Spatie's Laravel Query Builder",
-    "homepage": "https://github.com/dootix-developer/inertiajs-tables-laravel-query-builder",
+    "homepage": "https://github.com/AonoDevs/inertiajs-tables-laravel-query-builder",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Dootix",
-            "email": "it@dootix.com"
+            "name": "Aono",
+            "email": "contact@aono.fr"
         }
     ],
     "require": {
@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ProtoneMedia\\LaravelQueryBuilderInertiaJs\\": "php"
+            "AonoDevs\\LaravelQueryBuilderInertiaJs\\": "php"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ProtoneMedia\\LaravelQueryBuilderInertiaJs\\Tests\\": "tests"
+            "AonoDevs\\LaravelQueryBuilderInertiaJs\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "ProtoneMedia\\LaravelQueryBuilderInertiaJs\\InertiaTableServiceProvider"
+                "AonoDevs\\LaravelQueryBuilderInertiaJs\\InertiaTableServiceProvider"
             ]
         }
     }

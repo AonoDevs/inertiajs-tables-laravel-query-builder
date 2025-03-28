@@ -1,9 +1,9 @@
 {
-  "name": "@dootix-developer/inertiajs-tables-laravel-query-builder",
-  "version": "5.0.0",
+  "name": "@aonodevs/inertiajs-tables-laravel-query-builder",
+  "version": "1.0.0",
   "description": "Inertia.js Front-end Components for Spatie's Laravel Query Builder",
   "private": false,
-  "author": "Dootix <it@dootix.com>",
+  "author": "Aono <contact@aono.fr>",
   "license": "MIT",
   "type": "module",
   "main": "./dist/inertiajs-tables-laravel-query-builder.umd.js",

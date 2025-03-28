@@ -1,9 +1,9 @@
 <?php
 
-namespace ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters;
+namespace AonoDevs\LaravelQueryBuilderInertiaJs\Filters;
 
 use Illuminate\Contracts\Support\Arrayable;
-use ProtoneMedia\LaravelQueryBuilderInertiaJs\QueryBuilderFilters\FiltersNumberRange;
+use AonoDevs\LaravelQueryBuilderInertiaJs\QueryBuilderFilters\FiltersNumberRange;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class NumberRangeFilter implements Arrayable, Filterable

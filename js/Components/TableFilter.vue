@@ -150,7 +150,7 @@ function updateNumberRangeFilter(filter) {
 // Theme
 const fallbackTheme = {
     select: {
-        base: "block w-full shadow-xs text-sm rounded-md",
+        base: "block w-full shadow-sm text-sm rounded-md",
         color: {
             primary: "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-800 dark:divide-gray-800 dark:border dark:border-white/5 dark:text-gray-200",
             dootix: "border-gray-300 focus:ring-cyan-500 focus:border-blue-500 dark:bg-gray-800 dark:divide-gray-800 dark:border dark:border-white/5 dark:text-gray-200",

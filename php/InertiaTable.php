@@ -1,17 +1,17 @@
 <?php
 
-namespace ProtoneMedia\LaravelQueryBuilderInertiaJs;
+namespace AonoDevs\LaravelQueryBuilderInertiaJs;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Inertia\Response;
-use ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters\CustomFilter;
-use ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters\Filter;
-use ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters\Filterable;
-use ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters\NumberRangeFilter;
-use ProtoneMedia\LaravelQueryBuilderInertiaJs\Filters\ToggleFilter;
+use AonoDevs\LaravelQueryBuilderInertiaJs\Filters\CustomFilter;
+use AonoDevs\LaravelQueryBuilderInertiaJs\Filters\Filter;
+use AonoDevs\LaravelQueryBuilderInertiaJs\Filters\Filterable;
+use AonoDevs\LaravelQueryBuilderInertiaJs\Filters\NumberRangeFilter;
+use AonoDevs\LaravelQueryBuilderInertiaJs\Filters\ToggleFilter;
 
 class InertiaTable
 {
@@ -113,7 +113,7 @@ class InertiaTable
     /**
      * Per Page options for this table.
      *
-     * @param array $pageName
+     * @param array $perPageOptions
      * @return self
      */
     public function perPageOptions(array $perPageOptions): self
@@ -261,9 +261,10 @@ class InertiaTable
      * @param bool $hidden
      * @param bool $sortable
      * @param bool $searchable
+     * @param bool $clickable
      * @return self
      */
-    public function column(string $key = null, string $label = null, bool $canBeHidden = true, bool $hidden = false, bool $sortable = false, bool $searchable = false): self
+    public function column(?string $key = null, ?string $label = null, ?bool $canBeHidden = true, bool $hidden = false, bool $sortable = false, bool $searchable = false, bool $clickable = false): self
     {
         $key   = $key ?: Str::kebab($label);
         $label = $label ?: Str::headline($key);
@@ -276,6 +277,7 @@ class InertiaTable
             canBeHidden: $canBeHidden,
             hidden: $hidden,
             sortable: $sortable,
+            clickable: $clickable,
             sorted: false
         ))->values();
 
@@ -292,7 +294,7 @@ class InertiaTable
      * @param string|null $label
      * @return self
      */
-    public function withGlobalSearch(string $label = null): self
+    public function withGlobalSearch(?string $label = null): self
     {
         return $this->searchInput('global', $label ?: __('Search...'));
     }
@@ -305,7 +307,7 @@ class InertiaTable
      * @param string|null $defaultValue
      * @return self
      */
-    public function searchInput(string $key, string $label = null, string $defaultValue = null): self
+    public function searchInput(string $key, ?string $label = null, ?string $defaultValue = null): self
     {
         $this->searchInputs = $this->searchInputs->reject(function (SearchInput $searchInput) use ($key) {
             return $searchInput->key === $key;
@@ -329,7 +331,7 @@ class InertiaTable
      * @param string|null $noFilterOptionLabel
      * @return self
      */
-    public function selectFilter(string $key, array $options, string $label = null, string $defaultValue = null, bool $noFilterOption = true, string $noFilterOptionLabel = null): self
+    public function selectFilter(string $key, array $options, ?string $label = null, ?string $defaultValue = null, bool $noFilterOption = true, ?string $noFilterOptionLabel = null): self
     {
         $this->filters = $this->filters->reject(function (Filterable $filter) use ($key) {
             return $filter->key === $key;
@@ -337,10 +339,10 @@ class InertiaTable
             key: $key,
             label: $label ?: Str::headline($key),
             options: $options,
-            value: $defaultValue,
             noFilterOption: $noFilterOption,
             noFilterOptionLabel: $noFilterOptionLabel ?: '-',
-            type: 'select'
+            type: 'select',
+            value: $defaultValue
         ))->values();
 
         return $this;
@@ -354,7 +356,7 @@ class InertiaTable
      * @param bool|null $defaultValue
      * @return self
      */
-    public function toggleFilter(string $key, string $label = null, bool $defaultValue = null): self
+    public function toggleFilter(string $key, ?string $label = null, ?bool $defaultValue = null): self
     {
         $this->filters = $this->filters->reject(function (Filterable $filter) use ($key) {
             return $filter->key === $key;
@@ -371,11 +373,16 @@ class InertiaTable
      * Add a number range filter to the query builder.
      *
      * @param string $key
+     * @param float $max
+     * @param float $min
+     * @param string $prefix
+     * @param string $suffix
+     * @param float $step
      * @param string|null $label
      * @param bool|null $defaultValue
      * @return self
      */
-    public function numberRangeFilter(string $key, float $max, float $min = 0, string $prefix = '', string $suffix = '', float $step = 1, string $label = null, bool $defaultValue = null): self
+    public function numberRangeFilter(string $key, float $max, float $min = 0, string $prefix = '', string $suffix = '', float $step = 1, ?string $label = null, ?bool $defaultValue = null): self
     {
         $this->filters = $this->filters->reject(function (Filterable $filter) use ($key) {
             //return $filter->key === $key;
@@ -402,7 +409,7 @@ class InertiaTable
      * @param array $params = []
      * @return self
      */
-    public function customFilter(string $key, string $label = null, bool $defaultValue = null, array $params = []): self
+    public function customFilter(string $key, ?string $label = null, ?bool $defaultValue = null, array $params = []): self
     {
         $this->filters = $this->filters->reject(function (Filterable $filter) use ($key) {
             return $filter->key === $key;
