@@ -53,7 +53,7 @@ const props = defineProps({
 // Theme
 const fallbackTheme = {
     button: {
-        base: "w-full border rounded-md shadow-sm px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2",
+        base: "w-full border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
         color: {
             primary: "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-700 focus:ring-indigo-500",
             dootix: "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-700 focus:ring-cyan-500",

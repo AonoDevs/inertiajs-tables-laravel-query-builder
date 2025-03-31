@@ -244,7 +244,7 @@ export default {
         base: "h-2 rounded-full",
         color: {
           primary: "bg-indigo-600",
-          dootix: "bg-gradient-to-r from-cyan-500 to-blue-600",
+          dootix: "bg-linear-to-r from-cyan-500 to-blue-600",
         },
       },
       button: {

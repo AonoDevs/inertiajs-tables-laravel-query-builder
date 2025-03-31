@@ -561,7 +561,7 @@ const themeVariables = {
     inertia_table: {
         per_page_selector: {
             select: {
-                base: "block min-w-max shadow-sm text-sm rounded-md",
+                base: "block min-w-max shadow-xs text-sm rounded-md",
                 color: {
                     primary: "border-gray-300 focus:ring-yellow-500 focus:border-yellow-500",
                 },
@@ -578,7 +578,7 @@ const themeVariables = {
     inertia_table: {
         per_page_selector: {
             select: {
-                base: "block min-w-max shadow-sm text-sm rounded-md",
+                base: "block min-w-max shadow-xs text-sm rounded-md",
                 color: {
                     red_style: 'border-gray-300 focus:ring-red-500 focus:border-red-500',
                 },
@@ -601,7 +601,7 @@ const themeVariables = {
     inertia_table: {
         button_with_dropdown: {
             button: {
-                base: "w-full border rounded-md shadow-sm px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2",
+                base: "w-full border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
                 color: {
                     primary: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-indigo-500",
                     dootix: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-cyan-500",
@@ -610,7 +610,7 @@ const themeVariables = {
         },
         per_page_selector: {
             select: {
-                base: "block min-w-max shadow-sm text-sm rounded-md",
+                base: "block min-w-max shadow-xs text-sm rounded-md",
                 color: {
                     primary: "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500",
                     dootix: "border-gray-300 focus:ring-cyan-500 focus:border-blue-500",
@@ -620,7 +620,7 @@ const themeVariables = {
         table_filter: {
             select_filter: {
                 select: {
-                    base: "block w-full shadow-sm text-sm rounded-md",
+                    base: "block w-full shadow-xs text-sm rounded-md",
                     color: {
                         primary: "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500",
                         dootix: "border-gray-300 focus:ring-cyan-500 focus:border-blue-500",
@@ -632,12 +632,12 @@ const themeVariables = {
                     base: "w-11 h-6 rounded-full after:border after:rounded-full after:h-5 after:w-5",
                     color: {
                         primary: "after:bg-white after:border-white peer-checked:bg-indigo-500 bg-red-500",
-                        dootix: "after:bg-white after:border-white peer-checked:bg-gradient-to-r peer-checked:from-cyan-500 peer-checked:to-blue-600 bg-red-500",
+                        dootix: "after:bg-white after:border-white peer-checked:bg-linear-to-r peer-checked:from-cyan-500 peer-checked:to-blue-600 bg-red-500",
                         disabled: "after:bg-white after:border-white bg-gray-200",
                     }
                 },
                 reset_button: {
-                    base: "rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2",
+                    base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
                     color: {
                         primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
                         dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",
@@ -656,7 +656,7 @@ const themeVariables = {
                     base: "h-2 rounded-full",
                     color: {
                         primary: "bg-indigo-600",
-                        dootix: "bg-gradient-to-r from-cyan-500 to-blue-600",
+                        dootix: "bg-linear-to-r from-cyan-500 to-blue-600",
                     },
                 },
                 button: {
@@ -689,7 +689,7 @@ const themeVariables = {
         },
         global_search: {
             input: {
-                base: "block w-full pl-9 text-sm rounded-md shadow-sm",
+                base: "block w-full pl-9 text-sm rounded-md shadow-xs",
                 color: {
                     primary: "focus:ring-indigo-500 focus:border-indigo-500 border-gray-300",
                     dootix: "focus:ring-cyan-500 focus:border-blue-500 border-gray-300",
@@ -698,7 +698,7 @@ const themeVariables = {
         },
         reset_button: {
             button: {
-                base: "w-full border rounded-md shadow-sm px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2",
+                base: "w-full border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
                 color: {
                     primary: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-indigo-500",
                     dootix: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-cyan-500",
@@ -714,7 +714,7 @@ const themeVariables = {
                 },
             },
             remove_button: {
-                base: "rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2",
+                base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
                 color: {
                     primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
                     dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",

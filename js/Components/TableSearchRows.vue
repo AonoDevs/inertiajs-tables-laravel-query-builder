@@ -5,7 +5,7 @@
     :key="key"
     class="px-4 sm:px-0"
   >
-    <div class="flex rounded-md shadow-sm relative mt-3">
+    <div class="flex rounded-md shadow-xs relative mt-3">
       <label
         :for="searchInput.key"
         class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-500 text-sm"
@@ -138,7 +138,7 @@ const fallbackTheme = {
         },
     },
     remove_button: {
-        base: "rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2",
+        base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
         color: {
             primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
             dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",

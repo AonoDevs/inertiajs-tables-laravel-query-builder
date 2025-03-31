@@ -3,7 +3,7 @@
     <label class="relative inline-flex items-center cursor-pointer">
       <input type="checkbox" :checked="filter.value" class="sr-only peer" @change="onFilterChange(filter.key, $event.target.checked ? '1' : '0')">
       <div
-        class="peer-focus:outline-none peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:transition-all"
+        class="peer-focus:outline-hidden peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:transition-all"
         :class="getTheme('toggle')"
       />
     </label>
@@ -65,12 +65,12 @@ const fallbackTheme = {
     base: "w-11 h-6 rounded-full after:border after:rounded-full after:h-5 after:w-5",
     color: {
       primary: "after:bg-white after:border-white peer-checked:bg-indigo-500 bg-red-500",
-      dootix: "after:bg-white after:border-white peer-checked:bg-gradient-to-r peer-checked:from-cyan-500 peer-checked:to-blue-600 bg-red-500",
+      dootix: "after:bg-white after:border-white peer-checked:bg-linear-to-r peer-checked:from-cyan-500 peer-checked:to-blue-600 bg-red-500",
       disabled: "after:bg-white after:border-white bg-gray-200",
     },
   },
   reset_button: {
-    base: "rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2",
+    base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
     color: {
       primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
       dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",
