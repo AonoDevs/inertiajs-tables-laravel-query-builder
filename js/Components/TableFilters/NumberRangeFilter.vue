@@ -248,14 +248,14 @@ export default {
         },
       },
       button: {
-        base: "h-4 w-4 rounded-full shadow border",
+        base: "h-4 w-4 rounded-full shadow-sm border",
         color: {
           primary: "bg-white border-gray-300",
           dootix: "bg-white border-gray-300",
         },
       },
       popover: {
-        base: "truncate text-xs rounded py-1 px-4",
+        base: "truncate text-xs rounded-sm py-1 px-4",
         color: {
           primary: "bg-gray-600 text-white",
           dootix: "bg-gray-600 text-white",

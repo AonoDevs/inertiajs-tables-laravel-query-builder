@@ -24,12 +24,15 @@
   },
   "peerDependencies": {
     "@inertiajs/vue3": "^2.0.0",
-    "vue": "^3.2.37",
-    "tailwind-merge": "^3.3.0"
+    "tailwind-merge": "^3.3.0",
+    "vue": "^3.2.37"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
+    "@vueuse/core": "^13.9.0",
+    "clsx": "^2.1.1",
     "lodash-es": "^4.17.21",
+    "lucide-vue-next": "^0.545.0",
     "qs": "^6.10.5"
   },
   "devDependencies": {

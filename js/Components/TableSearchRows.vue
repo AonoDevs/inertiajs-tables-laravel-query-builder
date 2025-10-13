@@ -5,7 +5,7 @@
     :key="key"
     class="px-4 sm:px-0"
   >
-    <div class="flex rounded-md shadow-xs relative mt-3">
+    <div class="flex rounded-md shadow-2xs relative mt-3">
       <label
         :for="searchInput.key"
         class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-500 text-sm"

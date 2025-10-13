@@ -106,10 +106,10 @@ onMounted(() => {
 defineExpose({ hide });
 
 // Theme
-const commonClasses = "w-full bg-white border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-offset-2 border-gray-300"
+const commonClasses = "w-full bg-white border rounded-md shadow-2xs px-4 py-2 inline-flex justify-center text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-hidden focus:ring-2 focus:ring-offset-2 border-gray-300"
 const fallbackTheme = {
     button: {
-        base: "w-full border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
+        base: "w-full border rounded-md shadow-2xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
         color: {
             primary: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-indigo-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-900",
             dootix: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-cyan-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-900",
