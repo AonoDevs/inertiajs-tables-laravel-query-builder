@@ -1,9 +1,9 @@
 <script setup>
 import BreezeGuestLayout from "@/Layouts/Guest.vue";
-import { Table } from "@aonodevs/inertiajs-tables-laravel-query-builder";
+//import { Table } from "@aonodevs/inertiajs-tables-laravel-query-builder";
 
 // use this one for development:
-// import Table from "../../../../js/Components/Table.vue"
+import Table from "../../../../js/Components/Table.vue";
 
 defineProps(["users"]);
 </script>

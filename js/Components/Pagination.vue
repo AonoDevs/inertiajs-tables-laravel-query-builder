@@ -3,7 +3,10 @@
     v-if="hasPagination"
     class="bg-white dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6"
   >
-    <p v-if="!hasData || pagination.total < 1" class="text-gray-500 dark:text-gray-400">
+    <p 
+      v-if="!hasData || pagination.total < 1"
+      class="text-gray-500 dark:text-gray-400"
+    >
       {{ translations.no_results_found }}
     </p>
 
@@ -79,9 +82,9 @@
     <!-- full pagination -->
     <div
       v-if="hasData && hasLinks"
-      class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+      class="hidden sm:flex-1 sm:flex sm:flex-wrap sm:items-center sm:justify-between gap-4"
     >
-      <div class="flex flex-row space-x-4 items-center grow">
+      <div class="flex flex-row space-x-4 items-center">
         <PerPageSelector
           dusk="per-page-full"
           :value="perPage"
@@ -90,7 +93,7 @@
           :color="color"
         />
 
-        <p class="hidden lg:block text-sm text-gray-700 dark:text-gray-400 grow">
+        <p class="hidden lg:block text-sm text-gray-700 dark:text-gray-400">
           <span class="font-medium">{{ pagination.from }}</span>
           {{ translations.to }}
           <span class="font-medium">{{ pagination.to }}</span>
@@ -223,7 +226,7 @@ const props = defineProps({
     },
     color: {
         type: String,
-        default: 'primary',
+        default: "primary",
         required: false,
     },
 });
