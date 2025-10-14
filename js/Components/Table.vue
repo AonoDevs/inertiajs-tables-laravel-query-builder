@@ -7,7 +7,7 @@
       class="min-w-0 w-full"
       :class="{'opacity-75': isVisiting}"
     >
-      <div class="flex flex-row flex-wrap sm:flex-nowrap justify-start gap-2 md:gap-4">
+      <div class="flex flex-row flex-wrap sm:flex-nowrap justify-start gap-2 md:gap-4 items-center">
         <div
           v-if="queryBuilderProps.globalSearch"
           class="flex flex-row w-full sm:w-auto sm:grow mb-2 sm:mb-0"
@@ -143,15 +143,15 @@
       >
         <TableWrapper :class="{ 'mt-3': !hasOnlyData }">
           <slot name="table">
-            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-              <thead class="bg-gray-50 dark:bg-gray-900">
+            <Table>
+              <TableHeader>
                 <slot
                   name="head"
                   :show="show"
                   :sort-by="sortBy"
                   :header="header"
                 >
-                  <tr>
+                  <TableRow>
                     <HeaderCell
                       v-for="column in queryBuilderProps.columns"
                       :key="`table-${name}-header-${column.key}`"
@@ -165,30 +165,24 @@
                         />
                       </template>
                     </HeaderCell>
-                  </tr>
+                  </TableRow>
                 </slot>
-              </thead>
-              <tbody class="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-gray-900">
+              </TableHeader>
+              <TableBody>
                 <slot
                   name="body"
                   :show="show"
                 >
-                  <tr
+                  <TableRow
                     v-for="(item, key) in resourceData"
                     :key="`table-${name}-row-${key}`"
-                    class=""
-                    :class="{
-                      'bg-gray-50': striped && key % 2,
-                      'hover:bg-gray-100 dark:hover:bg-gray-800': striped,
-                      'hover:bg-gray-50 dark:hover:bg-gray-800': !striped
-                    }"
                     @click="rowClicked($event, item, key)"
                   >
-                    <td
+                    <TableCell
                       v-for="column in queryBuilderProps.columns"
                       v-show="show(column.key)"
                       :key="`table-${name}-row-${key}-column-${column.key}`"
-                      class="whitespace-nowrap px-3 py-4 text-sm dark:text-gray-400 text-gray-500"
+                      class="p-3"
                     >
                       <slot
                         :name="`cell(${column.key})`"
@@ -196,11 +190,11 @@
                       >
                         {{ item[column.key] }}
                       </slot>
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 </slot>
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </slot>
         </TableWrapper>
         <slot
@@ -246,6 +240,13 @@ import map from "lodash-es/map";
 import pickBy from "lodash-es/pickBy";
 import { router, usePage } from "@inertiajs/vue3";
 import GroupedActions from "./GroupedActions.vue";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHeader,
+    TableRow,
+} from "./ui/table";
 
 const emit = defineEmits(["rowClicked"]);
 

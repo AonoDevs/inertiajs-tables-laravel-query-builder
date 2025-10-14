@@ -2,7 +2,7 @@
   <div class="flow-root">
     <div class="overflow-x-auto">
       <div class="inline-block min-w-full align-middle">
-        <div class="overflow-hidden">
+        <div class="overflow-hidden rounded-md border">
           <slot />
         </div>
       </div>

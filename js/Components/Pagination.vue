@@ -1,7 +1,7 @@
 <template>
   <nav
     v-if="hasPagination"
-    class="px-4 py-3 flex items-center justify-between sm:px-6"
+    class="py-3 flex items-center justify-between"
   >
     <p
       v-if="!hasData || pagination.total < 1"

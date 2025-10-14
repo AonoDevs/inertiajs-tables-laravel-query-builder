@@ -1,55 +1,37 @@
 <template>
-  <th
-    v-show="!cell.hidden"
-    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-600 dark:text-gray-300"
-  >
+  <TableHead v-if="!cell.hidden">
     <component
-      :is="cell.sortable ? 'button' : 'div'"
-      class="w-full"
+      :is="cell.sortable ? Button : 'div'"
+      variant="ghost"
+      :class="cell.sortable ? 'w-fit' : 'w-full'"
       :dusk="cell.sortable ? `sort-${cell.key}` : null"
       @click="onClick"
     >
-      <span class="flex flex-row items-center">
-        <slot name="label"><span class="uppercase">{{ cell.label }}</span></slot>
+      <slot name="label">
+        {{ cell.label }}
+      </slot>
 
-        <slot name="sort">
-          <svg
-            v-if="cell.sortable"
-            aria-hidden="true"
-            class="w-3 h-3 ml-2"
-            :class="{
-              'text-gray-400': !cell.sorted,
+      <slot name="sort">
+        <template v-if="cell.sortable">
+          <component
+            :is="sortIcon"
+            :aria-hidden="!cell.sorted"
+            :class="[cell.sorted ? 'size-3.5' : 'size-4', {
               'text-green-500': cell.sorted,
-            }"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"
-            :sorted="cell.sorted"
-          >
-            <path
-              v-if="!cell.sorted"
-              fill="currentColor"
-              d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41zm255-105L177 64c-9.4-9.4-24.6-9.4-33.9 0L24 183c-15.1 15.1-4.4 41 17 41h238c21.4 0 32.1-25.9 17-41z"
-            />
-
-            <path
-              v-if="cell.sorted === 'asc'"
-              fill="currentColor"
-              d="M279 224H41c-21.4 0-32.1-25.9-17-41L143 64c9.4-9.4 24.6-9.4 33.9 0l119 119c15.2 15.1 4.5 41-16.9 41z"
-            />
-
-            <path
-              v-if="cell.sorted === 'desc'"
-              fill="currentColor"
-              d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"
-            />
-          </svg>
-        </slot>
-      </span>
+            }]"
+          />
+        </template>
+      </slot>
     </component>
-  </th>
+  </TableHead>
 </template>
 
 <script setup>
+import { TableHead } from "./ui/table/index.js";
+import { Button } from "./ui/button/index.js";
+import { ArrowDownUp, MoveUp, MoveDown } from "lucide-vue-next";
+import { computed } from "vue";
+
 const props = defineProps({
     cell: {
         type: Object,
@@ -62,7 +44,13 @@ function onClick(event) {
         props.cell.onSort(props.cell.key);
     }
     if (!props.cell.clickable) {
-        event.preventDefault()
+        event.preventDefault();
     }
 }
+
+const sortIcon = computed(() => {
+    if (props.cell.sorted === "asc") return MoveUp;
+    if (props.cell.sorted === "desc") return MoveDown;
+    return ArrowDownUp;
+});
 </script>
