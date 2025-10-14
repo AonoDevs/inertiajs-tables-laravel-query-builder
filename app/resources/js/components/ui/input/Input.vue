@@ -1,6 +1,6 @@
 <script setup>
 import { useVModel } from "@vueuse/core";
-import { cn } from "../../../../../../js/lib/utils";
+import { cn } from "../../../lib/utils";
 
 const props = defineProps({
   defaultValue: { type: [String, Number], required: false },

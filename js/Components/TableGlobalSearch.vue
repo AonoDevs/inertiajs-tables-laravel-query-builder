@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { Input } from "./ui/input/index.js";
+import { Input } from "@/components/ui/input/index.js";
 import { Search } from "lucide-vue-next";
 
 const props = defineProps({

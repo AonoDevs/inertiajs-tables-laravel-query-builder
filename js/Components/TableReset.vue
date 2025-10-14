@@ -14,7 +14,7 @@
 
 <script setup>
 import { getTranslations } from "../translations.js";
-import { Button } from "./ui/button/index.js";
+import { Button } from "@/components/ui/button/index.js";
 import { X } from "lucide-vue-next";
 
 const translations = getTranslations();

@@ -42,7 +42,7 @@
 import { computed, ref, watch, nextTick } from "vue";
 import find from "lodash-es/find";
 import { Search, X } from "lucide-vue-next";
-import { Input } from "./ui/input/index.js";
+import { Input } from "@/components/ui/input/index.js";
 
 const skipUnwrap = { el: ref([]) };
 let el = computed(() => skipUnwrap.el.value);

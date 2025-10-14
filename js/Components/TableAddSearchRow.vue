@@ -27,8 +27,8 @@ import {
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger
-} from "./ui/dropdown-menu/index.js";
-import { Button } from "./ui/button/index.js";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 const props = defineProps({
     searchInputs: {

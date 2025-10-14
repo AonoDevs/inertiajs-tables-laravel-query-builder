@@ -100,8 +100,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuSub,
     DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button/index.js";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button/index.js";
 import { Funnel } from "lucide-vue-next";
 import {
     Select,
@@ -109,7 +109,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "./ui/select";
+} from "@/components/ui/select";
 
 const props = defineProps({
     hasEnabledFilters: {

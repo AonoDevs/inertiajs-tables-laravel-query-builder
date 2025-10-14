@@ -106,7 +106,7 @@ import {
     PaginationItem,
     PaginationNext,
     PaginationPrevious,
-} from "./ui/pagination";
+} from "@/components/ui/pagination";
 
 const translations = getTranslations();
 
