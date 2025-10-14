@@ -1,11 +1,11 @@
 <template>
   <nav
     v-if="hasPagination"
-    class="bg-white dark:bg-gray-900 px-4 py-3 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 sm:px-6"
+    class="px-4 py-3 flex items-center justify-between sm:px-6"
   >
-    <p 
+    <p
       v-if="!hasData || pagination.total < 1"
-      class="text-gray-500 dark:text-gray-400"
+      class="text-primary"
     >
       {{ translations.no_results_found }}
     </p>
@@ -16,75 +16,33 @@
       class="flex-1 flex justify-between"
       :class="{'sm:hidden': hasLinks}"
     >
-      <component
-        :is="previousPageUrl ? 'a' : 'div'"
-        :class="{
-          'cursor-not-allowed text-gray-400': !previousPageUrl,
-          'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': previousPageUrl
-        }"
-        :href="previousPageUrl"
-        :dusk="previousPageUrl ? 'pagination-simple-previous' : null"
-        class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-sm font-medium rounded-md bg-white dark:bg-gray-800"
-        @click.prevent="onClick(previousPageUrl)"
+      <Pagination
+        show-edges
+        :items-per-page="pagination.per_page"
+        :total="pagination.total"
+        :default-page="pagination.current_page"
+        @update:page="(value) => onClick(pagination.links[value].url)"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M7 16l-4-4m0 0l4-4m-4 4h18"
+        <PaginationContent>
+          <PaginationPrevious />
+          <PerPageSelector
+            dusk="per-page-mobile"
+            :value="perPage"
+            :options="perPageOptions"
+            :on-change="onPerPageChange"
+            :color="color"
           />
-        </svg>
-        <span class="hidden sm:inline ml-2">{{ translations.previous }}</span>
-      </component>
-      <PerPageSelector
-        dusk="per-page-mobile"
-        :value="perPage"
-        :options="perPageOptions"
-        :on-change="onPerPageChange"
-        :color="color"
-      />
-      <component
-        :is="nextPageUrl ? 'a' : 'div'"
-        :class="{
-          'cursor-not-allowed text-gray-400 dark:text-gray-700': !nextPageUrl,
-          'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': nextPageUrl
-        }"
-        :href="nextPageUrl"
-        :dusk="nextPageUrl ? 'pagination-simple-next' : null"
-        class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-sm font-medium rounded-md bg-white dark:bg-gray-800"
-        @click.prevent="onClick(nextPageUrl)"
-      >
-        <span class="hidden sm:inline mr-2">{{ translations.next }}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 text-gray-400"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"
-          />
-        </svg>
-      </component>
+          <PaginationNext />
+        </PaginationContent>
+      </Pagination>
     </div>
 
     <!-- full pagination -->
     <div
       v-if="hasData && hasLinks"
-      class="hidden sm:flex-1 sm:flex sm:flex-wrap sm:items-center sm:justify-between gap-4"
+      class="hidden sm:flex-1 sm:flex sm:flex-wrap sm:items-center sm:justify-center gap-4"
     >
-      <div class="flex flex-row space-x-4 items-center">
+      <div class="flex flex-row space-x-4 items-center grow">
         <PerPageSelector
           dusk="per-page-full"
           :value="perPage"
@@ -93,7 +51,7 @@
           :color="color"
         />
 
-        <p class="hidden lg:block text-sm text-gray-700 dark:text-gray-400">
+        <p class="hidden lg:block text-sm text-primary grow">
           <span class="font-medium">{{ pagination.from }}</span>
           {{ translations.to }}
           <span class="font-medium">{{ pagination.to }}</span>
@@ -103,88 +61,35 @@
         </p>
       </div>
       <div>
-        <nav
-          class="relative z-0 inline-flex rounded-md shadow-2xs -space-x-px"
-          aria-label="Pagination"
+        <Pagination
+          v-slot="{ page }"
+          show-edges
+          :items-per-page="pagination.per_page"
+          :total="pagination.total"
+          :default-page="pagination.current_page"
+          @update:page="(value) => onClick(pagination.links[value].url)"
         >
-          <component
-            :is="previousPageUrl ? 'a' : 'div'"
-            :class="{
-              'cursor-not-allowed text-gray-400': !previousPageUrl,
-              'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': previousPageUrl
-            }"
-            :href="previousPageUrl"
-            :dusk="previousPageUrl ? 'pagination-previous' : null"
-            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white dark:bg-gray-900 dark:border-gray-700 text-sm font-medium"
-            @click.prevent="onClick(previousPageUrl)"
-          >
-            <span class="sr-only">{{ translations.previous }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </component>
+          <PaginationContent v-slot="{ items }">
+            <PaginationPrevious />
 
-          <div
-            v-for="(link, key) in pagination.links"
-            :key="key"
-          >
-            <slot name="link">
-              <component
-                :is="link.url ? 'a' : 'div'"
-                v-if="
-                  !isNaN(link.label) || link.label === '...'
-                "
-                :href="link.url"
-                :dusk="link.url ? `pagination-${link.label}` : null"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 text-sm font-medium text-gray-700 dark:text-gray-200"
-                :class="{
-                  'cursor-not-allowed': !link.url,
-                  'hover:bg-gray-50 dark:hover:bg-gray-700': link.url,
-                  'bg-white dark:bg-gray-900': !link.active,
-                  'bg-gray-100 dark:bg-gray-800': link.active,
-                }"
-                @click.prevent="onClick(link.url)"
+            <template
+              v-for="(item, index) in items"
+              :key="index"
+            >
+              <PaginationItem
+                v-if="item.type === 'page'"
+                :value="item.value"
+                :is-active="item.value === page"
               >
-                {{ link.label }}
-              </component>
-            </slot>
-          </div>
+                {{ item.value }}
+              </PaginationItem>
 
-          <component
-            :is="nextPageUrl ? 'a' : 'div'"
-            :class="{
-              'cursor-not-allowed text-gray-400': !nextPageUrl,
-              'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700': nextPageUrl
-            }"
-            :href="nextPageUrl"
-            :dusk="nextPageUrl ? 'pagination-next' : null"
-            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white dark:bg-gray-900 dark:border-gray-700 text-sm font-medium"
-            @click.prevent="onClick(nextPageUrl)"
-          >
-            <span class="sr-only">{{ translations.next }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </component>
-        </nav>
+              <PaginationEllipsis v-else />
+            </template>
+
+            <PaginationNext />
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   </nav>
@@ -194,6 +99,14 @@
 import PerPageSelector from "./PerPageSelector.vue";
 import { computed } from "vue";
 import { getTranslations } from "../translations.js";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationNext,
+    PaginationPrevious,
+} from "./ui/pagination";
 
 const translations = getTranslations();
 

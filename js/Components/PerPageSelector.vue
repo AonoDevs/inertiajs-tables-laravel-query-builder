@@ -1,27 +1,30 @@
 <template>
-  <select
+  <Select
     name="per_page"
     :dusk="dusk"
-    :value="value"
-    :class="getTheme('select')"
-    @change="onChange($event.target.value)"
+    :model-value="value"
+    @update:model-value="(v) => onChange(v)"
   >
-    <option
-      v-for="option in perPageOptions"
-      :key="option"
-      :value="option"
-    >
-      {{ option }} {{ translations.per_page }}
-    </option>
-  </select>
+    <SelectTrigger>
+      <SelectValue placeholder="" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem
+        v-for="option in perPageOptions"
+        :key="option"
+        :value="option"
+      >
+        {{ option }} {{ translations.per_page }}
+      </SelectItem>
+    </SelectContent>
+  </Select>
 </template>
 
 <script setup>
-import {computed, inject} from "vue";
+import { computed } from "vue";
 import uniq from "lodash-es/uniq";
 import { getTranslations } from "../translations.js";
-import {twMerge} from "tailwind-merge";
-import {get_theme_part} from "../helpers.js";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select/index.js";
 
 const translations = getTranslations();
 
@@ -53,14 +56,14 @@ const props = defineProps({
 
     color: {
         type: String,
-        default: 'primary',
+        default: "primary",
         required: false,
     },
 
     ui: {
         required: false,
         type: Object,
-        default: {} ,
+        default: {},
     },
 });
 
@@ -71,23 +74,5 @@ const perPageOptions = computed(() => {
 
     return uniq(options).sort((a, b) => a - b);
 });
-
-// Theme
-const fallbackTheme = {
-    select: {
-        base: "block min-w-max shadow-2xs text-sm rounded-md dark:bg-gray-800 dark:text-gray-400",
-        color: {
-            primary: "border-gray-300 dark:border-gray-700 focus:ring-indigo-500 focus:border-indigo-500",
-            dootix: "border-gray-300 dark:border-gray-700 focus:ring-cyan-500 focus:border-blue-500",
-        },
-    },
-}
-const themeVariables = inject('themeVariables');
-const getTheme = (item) => {
-    return twMerge(
-        get_theme_part([item, 'base'], fallbackTheme, themeVariables?.inertia_table?.per_page_selector, props.ui),
-        get_theme_part([item, 'color', props.color], fallbackTheme, themeVariables?.inertia_table?.per_page_selector, props.ui),
-    )
-}
 </script>
 
