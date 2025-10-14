@@ -8,7 +8,7 @@
       name="global"
       @input="onChange($event.target.value)"
     />
-    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    <div class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
       <Search class="size-5" />
     </div>
   </div>
@@ -55,7 +55,7 @@ const props = defineProps({
 // Theme
 const fallbackTheme = {
     input: {
-        base: "block w-full pl-9 text-sm rounded-md border-gray-300 shadow-2xs focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600",
+        base: "block w-full pl-8 text-sm rounded-md border-gray-300 shadow-2xs focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-indigo-600 dark:focus:ring-indigo-600",
         color: {
             primary: "focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 dark:border-gray-700 dark:text-gray-300",
             dootix: "focus:ring-cyan-500 focus:border-blue-500 border-gray-300 dark:border-gray-700 dark:text-gray-300",

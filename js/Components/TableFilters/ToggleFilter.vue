@@ -1,91 +1,74 @@
 <template>
   <div class="w-full flex gap-2 justify-between items-center">
-    <label class="relative inline-flex items-center cursor-pointer">
-      <input type="checkbox" :checked="filter.value" class="sr-only peer" @change="onFilterChange(filter.key, $event.target.checked ? '1' : '0')">
-      <div
-        class="peer-focus:outline-hidden peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:transition-all"
-        :class="getTheme('toggle')"
-      />
-    </label>
+    <Switch
+      :class="getTheme('toggle')"
+      :model-value="filter.value"
+      @update:model-value="(event) => onFilterChange(filter.key, event ? '1' : '0')"
+    />
     <button
       :class="getTheme('reset_button')"
       @click.prevent="onFilterChange(filter.key, null)"
     >
       <span class="sr-only">Remove search</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
+      <X class="size-5" />
     </button>
   </div>
 </template>
 
 <script setup>
-import {inject} from "vue";
-import {twMerge} from "tailwind-merge";
-import {get_theme_part} from "../../helpers.js";
+import { inject } from "vue";
+import { twMerge } from "tailwind-merge";
+import { get_theme_part } from "../../helpers.js";
+import { Switch } from "../ui/switch";
+import { X } from "lucide-vue-next";
 
 const props = defineProps({
-  filter: {
-    type: Object,
-    required: true,
-  },
+    filter: {
+        type: Object,
+        required: true,
+    },
 
-  onFilterChange: {
-    type: Function,
-    required: true,
-  },
+    onFilterChange: {
+        type: Function,
+        required: true,
+    },
 
-  color: {
-    type: String,
-    default: 'primary',
-    required: false,
-  },
+    color: {
+        type: String,
+        default: "primary",
+        required: false,
+    },
 
-  ui: {
-    required: false,
-    type: Object,
-    default: {} ,
-  },
+    ui: {
+        required: false,
+        type: Object,
+        default: {},
+    },
 });
 
 // Theme
 const fallbackTheme = {
-  toggle: {
-    base: "w-11 h-6 rounded-full after:border after:rounded-full after:h-5 after:w-5",
-    color: {
-      primary: "after:bg-white after:border-white peer-checked:bg-indigo-500 bg-red-500",
-      dootix: "after:bg-white after:border-white peer-checked:bg-linear-to-r peer-checked:from-cyan-500 peer-checked:to-blue-600 bg-red-500",
-      disabled: "after:bg-white after:border-white bg-gray-200",
+    toggle: {
+        color: {
+            primary: "data-[state=checked]:bg-indigo-500 data-[state=unchecked]:bg-destructive",
+            disabled: "data-[state=unchecked]:bg-input",
+        },
     },
-  },
-  reset_button: {
-    base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
-    color: {
-      primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
-      dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",
+    reset_button: {
+        color: {
+            primary: "text-input hover:text-muted-foreground focus:ring-muted-foreground",
+        },
     },
-  },
-}
-const themeVariables = inject('themeVariables');
+};
+const themeVariables = inject("themeVariables");
 const getTheme = (item) => {
-  let color = props.color
-  if (item === 'toggle' && props.filter.value === null) {
-    color = 'disabled'
-  }
-  return twMerge(
-    get_theme_part([item, 'base'], fallbackTheme, themeVariables?.inertia_table?.table_filter?.toggle_filter, props.ui),
-    get_theme_part([item, 'color', color], fallbackTheme, themeVariables?.inertia_table?.table_filter?.toggle_filter, props.ui),
-  )
-}
+    let color = props.color;
+    if (item === "toggle" && props.filter.value === null) {
+        color = "disabled";
+    }
+    return twMerge(
+        get_theme_part([item, "base"], fallbackTheme, themeVariables?.inertia_table?.table_filter?.toggle_filter, props.ui),
+        get_theme_part([item, "color", color], fallbackTheme, themeVariables?.inertia_table?.table_filter?.toggle_filter, props.ui),
+    );
+};
 </script>
