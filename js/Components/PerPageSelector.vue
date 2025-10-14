@@ -24,7 +24,7 @@
 import { computed } from "vue";
 import uniq from "lodash-es/uniq";
 import { getTranslations } from "../translations.js";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 
 const translations = getTranslations();
 

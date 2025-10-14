@@ -31,8 +31,8 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
     DropdownMenuCheckboxItem,
-} from "@/components/ui/dropdown-menu/index.js";
-import { Button } from "@/components/ui/button/index.js";
+} from "../components/ui/dropdown-menu/index.js";
+import { Button } from "../components/ui/button/index.js";
 
 const props = defineProps({
     columns: {

@@ -246,7 +246,7 @@ import {
     TableCell,
     TableHeader,
     TableRow,
-} from "@/components/ui/table";
+} from "../components/ui/table";
 
 const emit = defineEmits(["rowClicked"]);
 
