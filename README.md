@@ -23,16 +23,18 @@ This package provides a *DataTables-like* experience for [Inertia.js](https://in
 ## Compatibility
 
 * [Vue 3](https://v3.vuejs.org/guide/installation.html)
-* [Laravel 10](https://laravel.com/)
+* [Laravel 12](https://laravel.com/)
 * [Inertia.js](https://inertiajs.com/)
 * [Tailwind CSS v4](https://tailwindcss.com/) + [Forms plugin](https://github.com/tailwindlabs/tailwindcss-forms)
+* [Shadcn Components](https://www.shadcn-vue.com/)
+* [Lucide Icons](https://lucide.dev/guide/packages/lucide-vue-next)
 * PHP 8.2+
 
 **Note**: There is currently an [issue](https://github.com/protonemedia/inertiajs-tables-laravel-query-builder/issues/69) with using this package with Vite!
 
 ## Installation
 
-You need to install both the server-side package and the client-side package. Note that this package is only compatible with Laravel 10, Vue 3.0, and requires the Tailwind Forms plugin.
+You need to install both the server-side package and the client-side package. Note that this package is only compatible with Laravel 12, Vue 3.0, and requires the Tailwind Forms plugin and shadcn-vue configuration.
 
 ### Server-side installation (Laravel)
 
@@ -342,7 +344,6 @@ The `Table` has some additional properties to tweak its front-end behaviour.
 ```vue
 <template>
   <Table
-    :striped="true"
     :prevent-overlapping-requests="false"
     :input-debounce-ms="1000"
     :preserve-scroll="true"
@@ -352,7 +353,6 @@ The `Table` has some additional properties to tweak its front-end behaviour.
 
 | Property | Description | Default |
 | --- | --- | --- |
-| striped | Adds a *striped* layout to the table. | `false` |
 | preventOverlappingRequests | Cancels a previous visit on new user input to prevent an inconsistent state. | `true` |
 | inputDebounceMs | Number of ms to wait before refreshing the table on user input. | 350 |
 | preserveScroll | Configures the [Scroll preservation](https://inertiajs.com/scroll-management#scroll-preservation) behavior. You may also pass `table-top` to this property to scroll to the top of the table on new data. | false |
@@ -520,209 +520,6 @@ Each slot is provided with props to interact with the parent `Table` component.
     </template>
   </Table>
 </template>
-```
-
-### Customizations available
-
-You can customize some parts of the table.
-
-Provide an object with the desired customizations in `app.js` file like this:
-```javascript
-const themeVariables = {
-    inertia_table: {
-        per_page_selector: {
-            select: {
-                primary: 'your classes',
-            },
-        },
-    },
-}
-
-createInertiaApp({
-    progress: {
-        color: '#4B5563',
-    },
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
-            // ...
-            .provide('themeVariables', themeVariables)
-            // ...
-            .mount(el);
-    },
-})
-```
-
-You can customize the default style by overiding the default style like that: 
-
-```javascript
-const themeVariables = {
-    inertia_table: {
-        per_page_selector: {
-            select: {
-                base: "block min-w-max shadow-xs text-sm rounded-md",
-                color: {
-                    primary: "border-gray-300 focus:ring-yellow-500 focus:border-yellow-500",
-                },
-            },
-        },
-    },
-}
-```
-
-Or you can create a new style and using the `color` prop on the `Table.vue`
-
-```javascript
-const themeVariables = {
-    inertia_table: {
-        per_page_selector: {
-            select: {
-                base: "block min-w-max shadow-xs text-sm rounded-md",
-                color: {
-                    red_style: 'border-gray-300 focus:ring-red-500 focus:border-red-500',
-                },
-            },
-        },
-    },
-}
-```
-
-```vue
-<template>
-  <Table color="red_style" />
-</template>
-```
-
-Available customizations
-
-```javascript
-const themeVariables = {
-    inertia_table: {
-        button_with_dropdown: {
-            button: {
-                base: "w-full border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
-                color: {
-                    primary: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-indigo-500",
-                    dootix: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-cyan-500",
-                },
-            },
-        },
-        per_page_selector: {
-            select: {
-                base: "block min-w-max shadow-xs text-sm rounded-md",
-                color: {
-                    primary: "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500",
-                    dootix: "border-gray-300 focus:ring-cyan-500 focus:border-blue-500",
-                },
-            },
-        },
-        table_filter: {
-            select_filter: {
-                select: {
-                    base: "block w-full shadow-xs text-sm rounded-md",
-                    color: {
-                        primary: "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500",
-                        dootix: "border-gray-300 focus:ring-cyan-500 focus:border-blue-500",
-                    },
-                },
-            },
-            togle_filter: {
-                toggle: {
-                    base: "w-11 h-6 rounded-full after:border after:rounded-full after:h-5 after:w-5",
-                    color: {
-                        primary: "after:bg-white after:border-white peer-checked:bg-indigo-500 bg-red-500",
-                        dootix: "after:bg-white after:border-white peer-checked:bg-linear-to-r peer-checked:from-cyan-500 peer-checked:to-blue-600 bg-red-500",
-                        disabled: "after:bg-white after:border-white bg-gray-200",
-                    }
-                },
-                reset_button: {
-                    base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
-                    color: {
-                        primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
-                        dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",
-                    },
-                },
-            },
-            number_range_filter: {
-                main_bar: {
-                    base: "h-2 rounded-full",
-                    color: {
-                        primary: "bg-gray-200",
-                        dootix: "bg-gray-200",
-                    },
-                },
-                selected_bar: {
-                    base: "h-2 rounded-full",
-                    color: {
-                        primary: "bg-indigo-600",
-                        dootix: "bg-linear-to-r from-cyan-500 to-blue-600",
-                    },
-                },
-                button: {
-                    base: "h-4 w-4 rounded-full shadow border",
-                    color: {
-                        primary: "bg-white border-gray-300",
-                        dootix: "bg-white border-gray-300",
-                    },
-                },
-                popover: {
-                    base: "truncate text-xs rounded py-1 px-4",
-                    color: {
-                        primary: "bg-gray-600 text-white",
-                        dootix: "bg-gray-600 text-white",
-                    },
-                },
-                popover_arrow: {
-                    color: {
-                        primary: "text-gray-600",
-                        dootix: "text-gray-600",
-                    },
-                },
-                text: {
-                    color: {
-                        primary: "text-gray-700",
-                        dootix: "text-gray-700",
-                    },
-                },
-            },
-        },
-        global_search: {
-            input: {
-                base: "block w-full pl-9 text-sm rounded-md shadow-xs",
-                color: {
-                    primary: "focus:ring-indigo-500 focus:border-indigo-500 border-gray-300",
-                    dootix: "focus:ring-cyan-500 focus:border-blue-500 border-gray-300",
-                },
-            },
-        },
-        reset_button: {
-            button: {
-                base: "w-full border rounded-md shadow-xs px-4 py-2 inline-flex justify-center text-sm font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2",
-                color: {
-                    primary: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-indigo-500",
-                    dootix: "bg-white text-gray-700 hover:bg-gray-50 border-gray-300 focus:ring-cyan-500",
-                },
-            },
-        },
-        table_search_rows: {
-            input: {
-                base: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md text-sm",
-                color: {
-                    primary: "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500",
-                    dootix: "border-gray-300 focus:ring-cyan-500 focus:border-blue-500",
-                },
-            },
-            remove_button: {
-                base: "rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2",
-                color: {
-                    primary: "text-gray-400 hover:text-gray-500 focus:ring-indigo-500",
-                    dootix: "text-gray-400 hover:text-gray-500 focus:ring-cyan-500",
-                },
-            },
-        },
-    },
-}
 ```
 
 ## Testing

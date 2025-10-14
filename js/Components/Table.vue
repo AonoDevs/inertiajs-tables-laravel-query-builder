@@ -271,12 +271,6 @@ const props = defineProps({
         required: false,
     },
 
-    striped: {
-        type: Boolean,
-        default: false,
-        required: false,
-    },
-
     preventOverlappingRequests: {
         type: Boolean,
         default: true,
