@@ -215,9 +215,6 @@
           />
         </slot>
       </slot>
-      <Button variant="destructive">
-        test
-      </Button>
     </fieldset>
   </Transition>
 </template>
@@ -250,7 +247,6 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import {Button} from "@/components/ui/button";
 
 const emit = defineEmits(["rowClicked"]);
 
