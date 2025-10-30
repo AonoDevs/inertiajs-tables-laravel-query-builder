@@ -18,9 +18,9 @@
     >
       <Pagination
         show-edges
+        :page="pagination.current_page"
         :items-per-page="pagination.per_page"
         :total="pagination.total"
-        :default-page="pagination.current_page"
         @update:page="(value) => onClick(pagination.links[value].url)"
       >
         <PaginationContent>
@@ -64,9 +64,9 @@
         <Pagination
           v-slot="{ page }"
           show-edges
+          :page="pagination.current_page"
           :items-per-page="pagination.per_page"
           :total="pagination.total"
-          :default-page="pagination.current_page"
           @update:page="(value) => onClick(pagination.links[value].url)"
         >
           <PaginationContent v-slot="{ items }">

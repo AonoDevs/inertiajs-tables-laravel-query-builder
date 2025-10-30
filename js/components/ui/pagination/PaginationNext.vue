@@ -4,6 +4,7 @@ import { ChevronRightIcon } from "lucide-vue-next";
 import { PaginationNext, useForwardProps } from "reka-ui";
 import { cn } from "../../../lib/utils";
 import { buttonVariants } from "../button";
+import { getTranslations } from "../../../translations.js";
 
 const props = defineProps({
   asChild: { type: Boolean, required: false },
@@ -14,6 +15,7 @@ const props = defineProps({
 
 const delegatedProps = reactiveOmit(props, "class", "size");
 const forwarded = useForwardProps(delegatedProps);
+const translations = getTranslations();
 </script>
 
 <template>
@@ -29,7 +31,7 @@ const forwarded = useForwardProps(delegatedProps);
     v-bind="forwarded"
   >
     <slot>
-      <span class="hidden sm:block">Next</span>
+      <span class="hidden sm:block">{{ translations.next ?? 'Next' }}</span>
       <ChevronRightIcon />
     </slot>
   </PaginationNext>
