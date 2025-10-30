@@ -10,7 +10,7 @@
       @click.prevent="onFilterChange(filter.key, null)"
     >
       <span class="sr-only">Remove search</span>
-      <X class="size-5" />
+      <X class="size-4.5" />
     </button>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="outline">
-        <Eye class="size-5" />
+        <Eye class="size-4.5" />
         <span v-if="hasHiddenColumns">({{ hiddenColumnsCount }})</span>
       </Button>
     </DropdownMenuTrigger>
@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed } from "vue";
-import { Eye } from "lucide-vue-next";
+import {Eye } from "lucide-vue-next";
 import {
     DropdownMenu,
     DropdownMenuContent,

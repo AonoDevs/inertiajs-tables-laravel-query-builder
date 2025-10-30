@@ -7,7 +7,7 @@
     aria-haspopup="true"
     @click.prevent="onClick"
   >
-    <X class="size-5" />
+    <X class="size-4.5" />
     {{ translations.reset ?? 'Reset' }}
   </Button>
 </template>

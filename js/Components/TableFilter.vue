@@ -2,7 +2,7 @@
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="outline">
-        <Funnel class="size-5" />
+        <Funnel class="size-4.5" />
         <span
           v-if="hasEnabledFilters"
         >({{ activeFiltersCount }})</span>

@@ -14,6 +14,9 @@ defineProps(["users"]);
       :resource="users"
       :input-debounce-ms="50"
     >
+      <template #tableActions>
+            <div>test</div>
+        </template>
       <template #cell(actions)="{ item: user }">
         <a
           :href="`/users/${user.id}/edit`"

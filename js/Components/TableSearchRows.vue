@@ -3,14 +3,13 @@
     v-for="(searchInput, key) in searchInputs"
     v-show="searchInput.value !== null || isForcedVisible(searchInput.key)"
     :key="key"
-    class="px-4 sm:px-0"
   >
-    <div class="flex relative mt-3">
+    <div class="flex relative">
       <Label
         :for="searchInput.key"
         class="inline-flex items-center gap-2 px-4 rounded-l-md border border-r-0 border-input bg-muted text-primary text-sm shadow-xs"
       >
-        <Search class="size-5" />
+        <Search class="size-4.5" />
         <span>{{ searchInput.label }}</span>
       </Label>
       <Input
@@ -31,7 +30,7 @@
           @click.prevent="onRemove(searchInput.key)"
         >
           <span class="sr-only">Remove search</span>
-          <X class="size-5" />
+          <X class="size-4.5" />
         </button>
       </div>
     </div>

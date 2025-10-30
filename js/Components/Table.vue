@@ -4,13 +4,14 @@
       ref="tableFieldset"
       :key="`table-${name}`"
       :dusk="`table-${name}`"
-      class="min-w-0 w-full"
+      class="min-w-0 w-full space-y-3"
       :class="{'opacity-75': isVisiting}"
     >
+      <slot name="tableActions" />
       <div class="flex flex-row flex-wrap sm:flex-nowrap justify-start gap-2 md:gap-4 items-center">
         <div
           v-if="queryBuilderProps.globalSearch"
-          class="flex flex-row w-full sm:w-auto sm:grow mb-2 sm:mb-0"
+          class="flex flex-row w-full sm:w-auto sm:grow"
         >
           <slot
             name="tableGlobalSearch"
@@ -30,93 +31,91 @@
           </slot>
         </div>
 
-        <slot
-          name="tableFilter"
-          :has-filters="queryBuilderProps.hasFilters"
-          :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
-          :filters="queryBuilderProps.filters"
-          :on-filter-change="changeFilterValue"
-        >
-          <TableFilter
-            v-if="queryBuilderProps.hasFilters"
+        <ButtonGroup>
+          <slot
+            name="tableFilter"
+            :has-filters="queryBuilderProps.hasFilters"
             :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
             :filters="queryBuilderProps.filters"
             :on-filter-change="changeFilterValue"
-            :color="color"
           >
-            <template
-              v-for="(_, slot) in $slots"
-              #[slot]="slotData"
+            <TableFilter
+              v-if="queryBuilderProps.hasFilters"
+              :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
+              :filters="queryBuilderProps.filters"
+              :on-filter-change="changeFilterValue"
+              :color="color"
             >
-              <slot
-                :name="slot"
-                v-bind="slotData"
-              />
-            </template>
-          </TableFilter>
-        </slot>
+              <template
+                v-for="(_, slot) in $slots"
+                #[slot]="slotData"
+              >
+                <slot
+                  :name="slot"
+                  v-bind="slotData"
+                />
+              </template>
+            </TableFilter>
+          </slot>
 
-        <slot
-          v-if="!withGroupedMenu"
-          name="tableAddSearchRow"
-          :has-search-inputs="queryBuilderProps.hasSearchInputs"
-          :has-search-inputs-without-value="queryBuilderProps.hasSearchInputsWithoutValue"
-          :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
-          :on-add="showSearchInput"
-        >
-          <TableAddSearchRow
-            v-if="queryBuilderProps.hasSearchInputs"
-            :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
+          <slot
+            v-if="!withGroupedMenu"
+            name="tableAddSearchRow"
+            :has-search-inputs="queryBuilderProps.hasSearchInputs"
             :has-search-inputs-without-value="queryBuilderProps.hasSearchInputsWithoutValue"
+            :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
             :on-add="showSearchInput"
-            :color="color"
-          />
-        </slot>
+          >
+            <TableAddSearchRow
+              v-if="queryBuilderProps.hasSearchInputs"
+              :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
+              :has-search-inputs-without-value="queryBuilderProps.hasSearchInputsWithoutValue"
+              :on-add="showSearchInput"
+              :color="color"
+            />
+          </slot>
 
-        <slot
-          v-if="!withGroupedMenu"
-          name="tableColumns"
-          :has-columns="queryBuilderProps.hasToggleableColumns"
-          :columns="queryBuilderProps.columns"
-          :has-hidden-columns="queryBuilderProps.hasHiddenColumns"
-          :on-change="changeColumnStatus"
-        >
-          <TableColumns
-            v-if="queryBuilderProps.hasToggleableColumns"
+          <slot
+            v-if="!withGroupedMenu"
+            name="tableColumns"
+            :has-columns="queryBuilderProps.hasToggleableColumns"
             :columns="queryBuilderProps.columns"
             :has-hidden-columns="queryBuilderProps.hasHiddenColumns"
             :on-change="changeColumnStatus"
-            :color="color"
-          />
-        </slot>
+          >
+            <TableColumns
+              v-if="queryBuilderProps.hasToggleableColumns"
+              :columns="queryBuilderProps.columns"
+              :has-hidden-columns="queryBuilderProps.hasHiddenColumns"
+              :on-change="changeColumnStatus"
+              :color="color"
+            />
+          </slot>
 
-        <slot
-          v-if="withGroupedMenu"
-          name="groupedAction"
-          :actions="defaultActions"
-        >
-          <GroupedActions
-            :color="color"
+          <slot
+            v-if="withGroupedMenu"
+            name="groupedAction"
             :actions="defaultActions"
-          />
-        </slot>
+          >
+            <GroupedActions
+              :color="color"
+              :actions="defaultActions"
+            />
+          </slot>
 
-        <slot
-          v-if="!withGroupedMenu"
-          name="tableReset"
-          :can-be-reset="canBeReset"
-          :on-click="resetQuery"
-        >
-          <div
-            v-if="canBeReset"
-            class="mr-4 sm:mr-0"
+          <slot
+            v-if="!withGroupedMenu"
+            name="tableReset"
+            :can-be-reset="canBeReset"
+            :on-click="resetQuery"
           >
             <TableReset
+              v-if="canBeReset"
               :on-click="resetQuery"
               :color="color"
             />
-          </div>
-        </slot>
+          </slot>
+        </ButtonGroup>
       </div>
 
       <slot
@@ -141,7 +140,7 @@
         :meta="resourceMeta"
         :has-data="hasData"
       >
-        <TableWrapper :class="{ 'mt-3': !hasOnlyData }">
+        <TableWrapper>
           <slot name="table">
             <Table>
               <TableHeader>
@@ -247,6 +246,7 @@ import {
     TableHeader,
     TableRow,
 } from "../components/ui/table";
+import { ButtonGroup } from "../components/ui/button-group/index.js";
 
 const emit = defineEmits(["rowClicked"]);
 

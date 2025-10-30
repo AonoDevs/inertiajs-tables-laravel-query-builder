@@ -2,7 +2,7 @@
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="outline">
-        <Search class="size-5" />
+        <Search class="size-4.5" />
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent>
