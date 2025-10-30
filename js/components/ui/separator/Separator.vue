@@ -1,26 +1,26 @@
 <script setup>
 import { reactiveOmit } from "@vueuse/core";
+import { Separator } from "reka-ui";
 import { cn } from "../../../lib/utils";
-import { Separator } from "../separator";
 
 const props = defineProps({
-  orientation: { type: String, required: false, default: "vertical" },
-  decorative: { type: Boolean, required: false },
+  orientation: { type: String, required: false, default: "horizontal" },
+  decorative: { type: Boolean, required: false, default: true },
   asChild: { type: Boolean, required: false },
   as: { type: null, required: false },
   class: { type: null, required: false },
 });
+
 const delegatedProps = reactiveOmit(props, "class");
 </script>
 
 <template>
   <Separator
-    data-slot="button-group-separator"
+    data-slot="separator-root"
     v-bind="delegatedProps"
-    :orientation="props.orientation"
     :class="
       cn(
-        'bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto',
+        'bg-border shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px',
         props.class,
       )
     "
