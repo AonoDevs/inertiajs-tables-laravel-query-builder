@@ -31,7 +31,10 @@
           </slot>
         </div>
 
-        <component :is="withButtonGroupedMenu ? ButtonGroup : 'div'" :class="{'contents': !withButtonGroupedMenu}">
+        <component
+          :is="withButtonGroupedMenu ? ButtonGroup : 'div'"
+          :class="{'contents': !withButtonGroupedMenu}"
+        >
           <slot
             name="tableFilter"
             :has-filters="queryBuilderProps.hasFilters"
