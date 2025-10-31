@@ -31,7 +31,7 @@
           </slot>
         </div>
 
-        <ButtonGroup>
+        <component :is="withButtonGroupedMenu ? ButtonGroup : 'div'" :class="{'contents': !withButtonGroupedMenu}">
           <slot
             name="tableFilter"
             :has-filters="queryBuilderProps.hasFilters"
@@ -115,7 +115,7 @@
               :color="color"
             />
           </slot>
-        </ButtonGroup>
+        </component>
       </div>
 
       <slot
@@ -316,6 +316,12 @@ const props = defineProps({
     withGroupedMenu: {
         type: Boolean,
         default: false,
+        required: false,
+    },
+
+    withButtonGroupedMenu: {
+        type: Boolean,
+        default: true,
         required: false,
     },
 
