@@ -17,14 +17,13 @@
       :class="{'sm:hidden': hasLinks}"
     >
       <Pagination
-        show-edges
-        :page="pagination.current_page"
         :items-per-page="pagination.per_page"
-        :total="pagination.total"
-        @update:page="(value) => onClick(pagination.links[value].url)"
       >
         <PaginationContent>
-          <PaginationPrevious />
+          <PaginationPrevious
+            :disabled="!pagination.prev_page_url"
+            @click="onClick(pagination.prev_page_url)"
+          />
           <PerPageSelector
             dusk="per-page-mobile"
             :value="perPage"
@@ -32,7 +31,10 @@
             :on-change="onPerPageChange"
             :color="color"
           />
-          <PaginationNext />
+          <PaginationNext
+            :disabled="!pagination.next_page_url"
+            @click="onClick(pagination.next_page_url)"
+          />
         </PaginationContent>
       </Pagination>
     </div>
