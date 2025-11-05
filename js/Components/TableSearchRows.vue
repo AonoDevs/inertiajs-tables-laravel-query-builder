@@ -17,10 +17,10 @@
         :ref="skipUnwrap.el"
         :key="searchInput.key"
         :name="searchInput.key"
-        :value="searchInput.value"
+        :model-value="searchInput.value"
         type="text"
         class="rounded-l-none"
-        @input="onChange(searchInput.key, $event.target.value)"
+        @update:model-value="onChange(searchInput.key, $event)"
       />
       <div
         class="absolute inset-y-0 right-0 pr-3 flex items-center"

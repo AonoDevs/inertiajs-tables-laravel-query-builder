@@ -3,10 +3,10 @@
     <Input
       class="pl-8"
       :placeholder="label"
-      :value="value"
+      :model-value="value"
       type="text"
       name="global"
-      @input="onChange($event.target.value)"
+      @update:model-value="onChange"
     />
     <div class="absolute inset-y-0 start-0 pl-2 flex items-center pointer-events-none">
       <Search class="size-4.5" />
