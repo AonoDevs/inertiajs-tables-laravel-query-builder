@@ -7,7 +7,7 @@
     <div class="flex relative">
       <Label
         :for="searchInput.key"
-        class="inline-flex items-center gap-2 px-4 rounded-l-md border border-r-0 border-input bg-muted text-primary text-sm shadow-xs"
+        class="inline-flex items-center gap-2 px-4 rounded-l-md border border-r-0 border-input bg-muted text-primary text-sm shadow-xs w-fit shrink-0"
       >
         <Search class="size-4.5" />
         <span>{{ searchInput.label }}</span>
