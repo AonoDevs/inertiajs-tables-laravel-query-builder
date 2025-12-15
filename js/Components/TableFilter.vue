@@ -15,39 +15,34 @@
       >
         <DropdownMenuLabel>{{ filter.label }}</DropdownMenuLabel>
         <DropdownMenuSub>
-          <Select
+          <NativeSelect
             v-if="filter.type === 'select'"
             :model-value="filter.value"
             @update:model-value="(value) => onFilterChange(filter.key, value)"
           >
-            <SelectTrigger class="w-full">
-              <SelectValue placeholder="" />
-            </SelectTrigger>
-            <SelectContent>
-              <template
-                v-for="(option, optionKey) in filter.options"
+            <template
+              v-for="(option, optionKey) in filter.options"
+            >
+              <NativeSelectOption
+                v-if="!optionKey || optionKey === ''"
+                :key="optionKey"
+                :value="null"
               >
-                <SelectItem
-                  v-if="!optionKey || optionKey === ''"
-                  :key="optionKey"
-                  :value="null"
-                >
-                  {{ option }}
-                </SelectItem>
-              </template>
-              <template
-                v-for="(option, optionKey) in filter.options"
+                {{ option }}
+              </NativeSelectOption>
+            </template>
+            <template
+              v-for="(option, optionKey) in filter.options"
+            >
+              <NativeSelectOption
+                v-if="optionKey && optionKey !== ''"
+                :key="optionKey"
+                :value="optionKey"
               >
-                <SelectItem
-                  v-if="optionKey && optionKey !== ''"
-                  :key="optionKey"
-                  :value="optionKey"
-                >
-                  {{ option }}
-                </SelectItem>
-              </template>
-            </SelectContent>
-          </Select>
+                {{ option }}
+              </NativeSelectOption>
+            </template>
+          </NativeSelect>
           <ToggleFilter
             v-if="filter.type === 'toggle'"
             :filter="filter"
@@ -103,13 +98,7 @@ import {
 } from "../components/ui/dropdown-menu";
 import { Button } from "../components/ui/button/index.js";
 import { Funnel } from "lucide-vue-next";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "../components/ui/select";
+import { NativeSelect, NativeSelectOption } from "../components/ui/native-select/index.ts";
 
 const props = defineProps({
     hasEnabledFilters: {
