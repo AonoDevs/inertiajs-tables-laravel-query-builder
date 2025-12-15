@@ -69,7 +69,7 @@
           :page="pagination.current_page"
           :items-per-page="pagination.per_page"
           :total="pagination.total"
-          @update:page="(value) => onClick(pagination.links[value].url)"
+          @update:page="(value) => onClick(pagination.links.find(link => link.label === value.toString())?.url)"
         >
           <PaginationContent v-slot="{ items }">
             <PaginationPrevious />

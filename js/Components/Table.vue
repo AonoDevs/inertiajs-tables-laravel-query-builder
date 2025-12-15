@@ -8,7 +8,7 @@
       :class="{'opacity-75': isVisiting}"
     >
       <slot name="tableActions" />
-      <div class="flex flex-row flex-wrap sm:flex-nowrap justify-start gap-2 md:gap-4 items-center">
+      <div class="flex flex-row flex-wrap justify-start gap-2 md:gap-4 items-center">
         <div
           v-if="queryBuilderProps.globalSearch"
           class="flex flex-row w-full sm:w-auto sm:grow"
