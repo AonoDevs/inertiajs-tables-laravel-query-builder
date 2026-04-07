@@ -251,7 +251,7 @@ import {
 } from "../components/ui/table";
 import { ButtonGroup } from "../components/ui/button-group/index.js";
 
-const emit = defineEmits(["rowClicked"]);
+const emit = defineEmits(["rowClicked", "pageChanged"]);
 
 const props = defineProps({
     inertia: {
@@ -788,5 +788,6 @@ defineExpose({
     resetQuery,
     onPerPageChange,
     visitPageFromUrl,
+    sortBy,
 });
 </script>
