@@ -1,26 +1,27 @@
-<script setup>
-import BreezeGuestLayout from "@/Layouts/Guest.vue";
+<script setup lang="ts">
 //import { Table } from "@aonodevs/inertiajs-tables-laravel-query-builder";
 
 // use this one for development:
 import Table from "../../../../js/Components/Table.vue";
 
-defineProps(["users"]);
+defineProps<{
+    users: any;
+}>();
 </script>
 
 <template>
-  <BreezeGuestLayout>
     <Table
-      :resource="users"
-      :input-debounce-ms="50"
+        :resource="users"
+        :input-debounce-ms="50"
+        :with-button-grouped-menu="true"
+        :withGroupedMenu="true"
     >
-      <template #cell(actions)="{ item: user }">
-        <a
-          :href="`/users/${user.id}/edit`"
-        >
-          Edit
-        </a>
-      </template>
+        <template #cell(actions)="{ item: user }">
+            <a
+                :href="`/users/${user.id}/edit`"
+            >
+                Edit
+            </a>
+        </template>
     </Table>
-  </BreezeGuestLayout>
 </template>

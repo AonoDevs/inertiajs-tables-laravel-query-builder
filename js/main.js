@@ -1,4 +1,3 @@
-import ButtonWithDropdown from "./Components/ButtonWithDropdown.vue";
 import HeaderCell from "./Components/HeaderCell.vue";
 import OnClickOutside from "./Components/OnClickOutside.vue";
 import Pagination from "./Components/Pagination.vue";
@@ -13,7 +12,6 @@ import TableWrapper from "./Components/TableWrapper.vue";
 import { getTranslations, setTranslation, setTranslations } from "./translations";
 
 export {
-    ButtonWithDropdown,
     HeaderCell,
     OnClickOutside,
     Pagination,

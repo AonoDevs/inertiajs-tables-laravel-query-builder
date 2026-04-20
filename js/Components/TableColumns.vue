@@ -25,7 +25,7 @@
 
 <script setup>
 import { computed } from "vue";
-import {Eye } from "lucide-vue-next";
+import { Eye } from "lucide-vue-next";
 import {
     DropdownMenu,
     DropdownMenuContent,
