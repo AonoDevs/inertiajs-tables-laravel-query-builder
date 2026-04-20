@@ -2,12 +2,12 @@
 import { cn } from "../../../lib/utils";
 
 const props = defineProps({
-  class: { type: null, required: false },
+    class: { type: null, required: false },
 });
 </script>
 
 <template>
-  <thead data-slot="table-header" :class="cn('[&_tr]:border-b', props.class)">
-    <slot />
-  </thead>
+    <thead data-slot="table-header" :class="cn('[&_tr]:border-b', props.class)">
+        <slot />
+    </thead>
 </template>

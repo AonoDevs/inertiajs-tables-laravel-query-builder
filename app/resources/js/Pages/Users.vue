@@ -17,11 +17,7 @@ defineProps<{
         :withGroupedMenu="true"
     >
         <template #cell(actions)="{ item: user }">
-            <a
-                :href="`/users/${user.id}/edit`"
-            >
-                Edit
-            </a>
+            <a :href="`/users/${user.id}/edit`"> Edit </a>
         </template>
     </Table>
 </template>
