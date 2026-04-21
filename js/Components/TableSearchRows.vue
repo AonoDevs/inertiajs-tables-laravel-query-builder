@@ -39,7 +39,7 @@
 
 <script setup>
 import { computed, ref, watch, nextTick } from "vue";
-import find from "lodash-es/find";
+import find from "lodash-es";
 import { Search, X } from "lucide-vue-next";
 import { Input } from "../components/ui/input/index.js";
 

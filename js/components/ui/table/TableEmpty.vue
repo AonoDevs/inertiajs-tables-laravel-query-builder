@@ -5,8 +5,8 @@ import TableCell from "./TableCell.vue";
 import TableRow from "./TableRow.vue";
 
 const props = defineProps({
-  class: { type: null, required: false },
-  colspan: { type: Number, required: false, default: 1 },
+    class: { type: null, required: false },
+    colspan: { type: Number, required: false, default: 1 },
 });
 
 const delegatedProps = reactiveOmit(props, "class");

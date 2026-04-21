@@ -17,7 +17,7 @@
 
 <script setup>
 import { computed } from "vue";
-import uniq from "lodash-es/uniq";
+import uniq from "lodash-es";
 import { getTranslations } from "../translations.js";
 import { NativeSelect, NativeSelectOption } from "../components/ui/native-select/index";
 

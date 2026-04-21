@@ -10,10 +10,10 @@ const props = defineProps({
 </script>
 
 <template>
-    <optgroup
-        data-slot="native-select-optgroup"
-        :class="cn('bg-popover text-popover-foreground', props.class)"
-    >
-        <slot />
-    </optgroup>
+  <optgroup
+    data-slot="native-select-optgroup"
+    :class="cn('bg-popover text-popover-foreground', props.class)"
+  >
+    <slot />
+  </optgroup>
 </template>

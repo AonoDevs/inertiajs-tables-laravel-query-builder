@@ -9,19 +9,22 @@ defineProps(["users"]);
 </script>
 
 <template>
-    <BreezeGuestLayout>
-        <Table :meta="users">
-            <template #head>
-                <tr>
-                    <th>User</th>
-                </tr>
-            </template>
+  <BreezeGuestLayout>
+    <Table :meta="users">
+      <template #head>
+        <tr>
+          <th>User</th>
+        </tr>
+      </template>
 
-            <template #body>
-                <tr v-for="(user, key) in users.data" :key="key">
-                    <td>{{ user.name }}</td>
-                </tr>
-            </template>
-        </Table>
-    </BreezeGuestLayout>
+      <template #body>
+        <tr
+          v-for="(user, key) in users.data"
+          :key="key"
+        >
+          <td>{{ user.name }}</td>
+        </tr>
+      </template>
+    </Table>
+  </BreezeGuestLayout>
 </template>
