@@ -783,6 +783,7 @@ function header(key) {
 
     return columnData;
 }
+
 defineExpose({
     changeFilterValue,
     resetQuery,

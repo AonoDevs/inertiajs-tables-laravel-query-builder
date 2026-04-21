@@ -15,7 +15,6 @@ export default defineConfig({
         rollupOptions: {
             external: [
                 /^@inertiajs.*/,
-                /^@popperjs.*/,
                 /^lodash-es.*/,
                 "qs",
                 "vue"
