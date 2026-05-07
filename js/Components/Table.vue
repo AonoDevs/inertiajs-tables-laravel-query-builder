@@ -268,6 +268,12 @@ const props = defineProps({
         required: false,
     },
 
+    reset: {
+        type: Array,
+        default: [],
+        required: false,
+    },
+
     name: {
         type: String,
         default: "default",
@@ -707,6 +713,7 @@ function visit(url) {
         {},
         {
             only: props.only.length > 0 ? [...props.only, "queryBuilderProps"] : [],
+            reset: props.reset.length > 0 ? [...props.reset, "queryBuilderProps"] : [],
             replace: true,
             preserveState: true,
             preserveScroll: props.preserveScroll !== false,
