@@ -142,6 +142,8 @@
         name="tableWrapper"
         :meta="resourceMeta"
         :has-data="hasData"
+        :can-be-reset="canBeReset"
+        :reset-query="resetQuery"
       >
         <TableWrapper>
           <slot name="table">
