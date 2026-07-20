@@ -442,6 +442,22 @@ const hasData = computed(() => {
     return false;
 });
 
+const currentSearchLocation = computed(() => {
+    if (location === "undefined") {
+        return "";
+    }
+
+    return location.search.substring(1);
+});
+
+const currentPathnameLocation = computed(() => {
+    if (location === "undefined") {
+        return "";
+    }
+
+    return location.pathname;
+});
+
 const defaultActions = ref({
     reset: {
         onClick: resetQuery,
@@ -475,7 +491,7 @@ const canBeReset = computed(() => {
         return true;
     }
 
-    const queryStringData = qs.parse(location.search.substring(1));
+    const queryStringData = qs.parse(currentSearchLocation.value);
 
     const page = queryStringData[pageName.value];
 
@@ -664,7 +680,7 @@ function visitPageFromUrl(url) {
 }
 
 function generateNewQueryString() {
-    const queryStringData = qs.parse(location.search.substring(1));
+    const queryStringData = qs.parse(currentSearchLocation.value);
 
     const prefix = props.name === "default" ? "" : (props.name + "_");
 
@@ -748,9 +764,8 @@ function visit(url) {
 function  rowClicked(event, item, key) {
     emit("rowClicked", event, item, key);
 }
-
 watch(queryBuilderData, () => {
-    visit(location.pathname + "?" +  generateNewQueryString());
+    visit(currentPathnameLocation.value + "?" +  generateNewQueryString());
 }, { deep: true });
 
 const inertiaListener = () => {
