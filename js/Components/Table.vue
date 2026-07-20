@@ -442,21 +442,10 @@ const hasData = computed(() => {
     return false;
 });
 
-const currentSearchLocation = computed(() => {
-    if (location === "undefined") {
-        return "";
-    }
-
-    return location.search.substring(1);
-});
-
-const currentPathnameLocation = computed(() => {
-    if (location === "undefined") {
-        return "";
-    }
-
-    return location.pathname;
-});
+const page = usePage();
+const currentUrl = computed(() => page.url);
+const currentPathnameLocation = computed(() => currentUrl.value.split("?")[0] ?? "");
+const currentSearchLocation = computed(() => currentUrl.value.split("?")[1] ?? "");
 
 const defaultActions = ref({
     reset: {
