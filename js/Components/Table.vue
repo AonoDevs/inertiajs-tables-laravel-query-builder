@@ -721,6 +721,7 @@ function visit(url) {
         {
             only: props.only.length > 0 ? [...props.only, "queryBuilderProps"] : [],
             reset: props.reset.length > 0 ? [...props.reset, "queryBuilderProps"] : [],
+            viewTransition: false,
             replace: true,
             preserveState: true,
             preserveScroll: props.preserveScroll !== false,
