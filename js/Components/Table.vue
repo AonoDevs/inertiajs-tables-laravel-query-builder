@@ -145,8 +145,8 @@
         :can-be-reset="canBeReset"
         :reset-query="resetQuery"
       >
-        <TableWrapper>
-          <slot name="table">
+        <slot name="table">
+          <TableWrapper>
             <Table>
               <TableHeader>
                 <slot
@@ -199,8 +199,8 @@
                 </slot>
               </TableBody>
             </Table>
-          </slot>
-        </TableWrapper>
+          </TableWrapper>
+        </slot>
         <slot
           name="pagination"
           :on-click="visitPageFromUrl"
