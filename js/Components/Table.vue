@@ -823,5 +823,6 @@ defineExpose({
     onPerPageChange,
     visitPageFromUrl,
     sortBy,
+    isVisiting,
 });
 </script>
