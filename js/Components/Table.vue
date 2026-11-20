@@ -8,118 +8,136 @@
       :class="{'opacity-75': isVisiting}"
     >
       <slot name="tableActions" />
-      <div class="flex flex-row flex-wrap justify-start gap-2 md:gap-4 items-center">
-        <div
-          v-if="queryBuilderProps.globalSearch"
-          class="flex flex-row w-full sm:w-auto sm:grow"
-        >
-          <slot
-            name="tableGlobalSearch"
-            :has-global-search="queryBuilderProps.globalSearch"
-            :label="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.label : null"
-            :value="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.value : null"
-            :on-change="changeGlobalSearchValue"
-          >
-            <TableGlobalSearch
-              v-if="queryBuilderProps.globalSearch"
-              class="grow"
-              :label="queryBuilderProps.globalSearch.label"
-              :value="queryBuilderProps.globalSearch.value"
-              :on-change="changeGlobalSearchValue"
-              :color="color"
-            />
-          </slot>
-        </div>
+      <slot
+        name="tableGlobalFilter"
+        :has-global-search="queryBuilderProps.globalSearch"
+        :global-search-label="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.label : null"
+        :global-search-value="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.value : null"
+        :global-search-on-change="changeGlobalSearchValue"
 
-        <component
-          :is="withButtonGroupedMenu ? ButtonGroup : 'div'"
-          :class="{'contents': !withButtonGroupedMenu}"
-        >
-          <slot
-            name="tableFilter"
-            :has-filters="queryBuilderProps.hasFilters"
-            :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
-            :filters="queryBuilderProps.filters"
-            :on-filter-change="changeFilterValue"
+        :has-filters="queryBuilderProps.hasFilters"
+        :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
+        :filters="queryBuilderProps.filters"
+        :on-filter-change="changeFilterValue"
+
+        :can-be-reset="canBeReset"
+        :reset-on-click="resetQuery"
+
+        :processing="isVisiting"
+      >
+        <div class="flex flex-row flex-wrap justify-start gap-2 md:gap-4 items-center">
+          <div
+            v-if="queryBuilderProps.globalSearch"
+            class="flex flex-row w-full sm:w-auto sm:grow"
           >
-            <TableFilter
-              v-if="queryBuilderProps.hasFilters"
+            <slot
+              name="tableGlobalSearch"
+              :has-global-search="queryBuilderProps.globalSearch"
+              :label="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.label : null"
+              :value="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.value : null"
+              :on-change="changeGlobalSearchValue"
+            >
+              <TableGlobalSearch
+                v-if="queryBuilderProps.globalSearch"
+                class="grow"
+                :label="queryBuilderProps.globalSearch.label"
+                :value="queryBuilderProps.globalSearch.value"
+                :on-change="changeGlobalSearchValue"
+                :color="color"
+              />
+            </slot>
+          </div>
+
+          <component
+            :is="withButtonGroupedMenu ? ButtonGroup : 'div'"
+            :class="{'contents': !withButtonGroupedMenu}"
+          >
+            <slot
+              name="tableFilter"
+              :has-filters="queryBuilderProps.hasFilters"
               :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
               :filters="queryBuilderProps.filters"
               :on-filter-change="changeFilterValue"
-              :color="color"
             >
-              <template
-                v-for="(_, slot) in $slots"
-                #[slot]="slotData"
+              <TableFilter
+                v-if="queryBuilderProps.hasFilters"
+                :has-enabled-filters="queryBuilderProps.hasEnabledFilters"
+                :filters="queryBuilderProps.filters"
+                :on-filter-change="changeFilterValue"
+                :color="color"
               >
-                <slot
-                  :name="slot"
-                  v-bind="slotData"
-                />
-              </template>
-            </TableFilter>
-          </slot>
+                <template
+                  v-for="(_, slot) in $slots"
+                  #[slot]="slotData"
+                >
+                  <slot
+                    :name="slot"
+                    v-bind="slotData"
+                  />
+                </template>
+              </TableFilter>
+            </slot>
 
-          <slot
-            v-if="!withGroupedMenu"
-            name="tableAddSearchRow"
-            :has-search-inputs="queryBuilderProps.hasSearchInputs"
-            :has-search-inputs-without-value="queryBuilderProps.hasSearchInputsWithoutValue"
-            :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
-            :on-add="showSearchInput"
-          >
-            <TableAddSearchRow
-              v-if="queryBuilderProps.hasSearchInputs"
-              :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
+            <slot
+              v-if="!withGroupedMenu"
+              name="tableAddSearchRow"
+              :has-search-inputs="queryBuilderProps.hasSearchInputs"
               :has-search-inputs-without-value="queryBuilderProps.hasSearchInputsWithoutValue"
+              :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
               :on-add="showSearchInput"
-              :color="color"
-            />
-          </slot>
+            >
+              <TableAddSearchRow
+                v-if="queryBuilderProps.hasSearchInputs"
+                :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
+                :has-search-inputs-without-value="queryBuilderProps.hasSearchInputsWithoutValue"
+                :on-add="showSearchInput"
+                :color="color"
+              />
+            </slot>
 
-          <slot
-            v-if="!withGroupedMenu"
-            name="tableColumns"
-            :has-columns="queryBuilderProps.hasToggleableColumns"
-            :columns="queryBuilderProps.columns"
-            :has-hidden-columns="queryBuilderProps.hasHiddenColumns"
-            :on-change="changeColumnStatus"
-          >
-            <TableColumns
-              v-if="queryBuilderProps.hasToggleableColumns"
+            <slot
+              v-if="!withGroupedMenu"
+              name="tableColumns"
+              :has-columns="queryBuilderProps.hasToggleableColumns"
               :columns="queryBuilderProps.columns"
               :has-hidden-columns="queryBuilderProps.hasHiddenColumns"
               :on-change="changeColumnStatus"
-              :color="color"
-            />
-          </slot>
+            >
+              <TableColumns
+                v-if="queryBuilderProps.hasToggleableColumns"
+                :columns="queryBuilderProps.columns"
+                :has-hidden-columns="queryBuilderProps.hasHiddenColumns"
+                :on-change="changeColumnStatus"
+                :color="color"
+              />
+            </slot>
 
-          <slot
-            v-if="withGroupedMenu"
-            name="groupedAction"
-            :actions="defaultActions"
-          >
-            <GroupedActions
-              :color="color"
+            <slot
+              v-if="withGroupedMenu"
+              name="groupedAction"
               :actions="defaultActions"
-            />
-          </slot>
+            >
+              <GroupedActions
+                :color="color"
+                :actions="defaultActions"
+              />
+            </slot>
 
-          <slot
-            v-if="!withGroupedMenu"
-            name="tableReset"
-            :can-be-reset="canBeReset"
-            :on-click="resetQuery"
-          >
-            <TableReset
-              v-if="canBeReset"
+            <slot
+              v-if="!withGroupedMenu"
+              name="tableReset"
+              :can-be-reset="canBeReset"
               :on-click="resetQuery"
-              :color="color"
-            />
-          </slot>
-        </component>
-      </div>
+            >
+              <TableReset
+                v-if="canBeReset"
+                :on-click="resetQuery"
+                :color="color"
+              />
+            </slot>
+          </component>
+        </div>
+      </slot>
 
       <slot
         name="tableSearchRows"
