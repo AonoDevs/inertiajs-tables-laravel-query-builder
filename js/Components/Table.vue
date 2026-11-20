@@ -160,9 +160,11 @@
         name="tableWrapper"
         :meta="resourceMeta"
         :has-data="hasData"
+        :can-be-reset="canBeReset"
+        :reset-query="resetQuery"
       >
-        <TableWrapper>
-          <slot name="table">
+        <slot name="table">
+          <TableWrapper>
             <Table>
               <TableHeader>
                 <slot
@@ -215,8 +217,8 @@
                 </slot>
               </TableBody>
             </Table>
-          </slot>
-        </TableWrapper>
+          </TableWrapper>
+        </slot>
         <slot
           name="pagination"
           :on-click="visitPageFromUrl"
@@ -251,13 +253,13 @@ import TableReset from "./TableReset.vue";
 import TableWrapper from "./TableWrapper.vue";
 import { computed, onMounted, ref, watch, onUnmounted, getCurrentInstance, Transition } from "vue";
 import qs from "qs";
-import clone from "lodash-es/clone";
-import filter from "lodash-es/filter";
-import findKey from "lodash-es/findKey";
-import forEach from "lodash-es/forEach";
-import isEqual from "lodash-es/isEqual";
-import map from "lodash-es/map";
-import pickBy from "lodash-es/pickBy";
+import clone from "lodash-es/clone.js";
+import filter from "lodash-es/filter.js";
+import findKey from "lodash-es/findKey.js";
+import forEach from "lodash-es/forEach.js";
+import isEqual from "lodash-es/isEqual.js";
+import map from "lodash-es/map.js";
+import pickBy from "lodash-es/pickBy.js";
 import { router, usePage } from "@inertiajs/vue3";
 import GroupedActions from "./GroupedActions.vue";
 import {
@@ -281,6 +283,12 @@ const props = defineProps({
     },
 
     only: {
+        type: Array,
+        default: [],
+        required: false,
+    },
+
+    reset: {
         type: Array,
         default: [],
         required: false,
@@ -452,6 +460,11 @@ const hasData = computed(() => {
     return false;
 });
 
+const page = usePage();
+const currentUrl = computed(() => page.url);
+const currentPathnameLocation = computed(() => currentUrl.value.split("?")[0] ?? "");
+const currentSearchLocation = computed(() => currentUrl.value.split("?")[1] ?? "");
+
 const defaultActions = ref({
     reset: {
         onClick: resetQuery,
@@ -485,7 +498,7 @@ const canBeReset = computed(() => {
         return true;
     }
 
-    const queryStringData = qs.parse(location.search.substring(1));
+    const queryStringData = qs.parse(currentSearchLocation.value);
 
     const page = queryStringData[pageName.value];
 
@@ -674,7 +687,7 @@ function visitPageFromUrl(url) {
 }
 
 function generateNewQueryString() {
-    const queryStringData = qs.parse(location.search.substring(1));
+    const queryStringData = qs.parse(currentSearchLocation.value);
 
     const prefix = props.name === "default" ? "" : (props.name + "_");
 
@@ -725,6 +738,8 @@ function visit(url) {
         {},
         {
             only: props.only.length > 0 ? [...props.only, "queryBuilderProps"] : [],
+            reset: props.reset.length > 0 ? [...props.reset, "queryBuilderProps"] : [],
+            viewTransition: false,
             replace: true,
             preserveState: true,
             preserveScroll: props.preserveScroll !== false,
@@ -757,9 +772,8 @@ function visit(url) {
 function  rowClicked(event, item, key) {
     emit("rowClicked", event, item, key);
 }
-
 watch(queryBuilderData, () => {
-    visit(location.pathname + "?" +  generateNewQueryString());
+    visit(currentPathnameLocation.value + "?" +  generateNewQueryString());
 }, { deep: true });
 
 const inertiaListener = () => {

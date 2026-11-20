@@ -4,19 +4,19 @@ import { ChevronDownIcon } from "lucide-vue-next";
 import { cn } from "../../../lib/utils";
 
 defineOptions({
-  inheritAttrs: false,
+    inheritAttrs: false,
 });
 
 const props = defineProps({
-  modelValue: { type: null, required: false },
-  class: { type: null, required: false },
+    modelValue: { type: null, required: false },
+    class: { type: null, required: false },
 });
 
 const emit = defineEmits(["update:modelValue"]);
 
 const modelValue = useVModel(props, "modelValue", emit, {
-  passive: true,
-  defaultValue: "",
+    passive: true,
+    defaultValue: "",
 });
 
 const delegatedProps = reactiveOmit(props, "class");

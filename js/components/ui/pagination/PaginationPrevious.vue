@@ -4,13 +4,13 @@ import { ChevronLeftIcon } from "lucide-vue-next";
 import { PaginationPrev, useForwardProps } from "reka-ui";
 import { cn } from "../../../lib/utils";
 import { buttonVariants } from "../button";
-import {getTranslations} from "../../../translations.js";
+import { getTranslations } from "../../../translations.js";
 
 const props = defineProps({
-  asChild: { type: Boolean, required: false },
-  as: { type: null, required: false },
-  size: { type: null, required: false, default: "default" },
-  class: { type: null, required: false },
+    asChild: { type: Boolean, required: false },
+    as: { type: null, required: false },
+    size: { type: null, required: false, default: "default" },
+    class: { type: null, required: false },
 });
 
 const delegatedProps = reactiveOmit(props, "class", "size");

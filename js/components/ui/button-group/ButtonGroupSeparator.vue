@@ -4,11 +4,11 @@ import { cn } from "../../../lib/utils";
 import { Separator } from "../separator";
 
 const props = defineProps({
-  orientation: { type: String, required: false, default: "vertical" },
-  decorative: { type: Boolean, required: false },
-  asChild: { type: Boolean, required: false },
-  as: { type: null, required: false },
-  class: { type: null, required: false },
+    orientation: { type: String, required: false, default: "vertical" },
+    decorative: { type: Boolean, required: false },
+    asChild: { type: Boolean, required: false },
+    as: { type: null, required: false },
+    class: { type: null, required: false },
 });
 const delegatedProps = reactiveOmit(props, "class");
 </script>

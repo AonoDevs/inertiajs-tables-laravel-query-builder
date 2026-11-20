@@ -16,10 +16,10 @@
         <DropdownMenuPortal>
           <DropdownMenuSubContent>
             <DropdownMenuItem
-                v-for="(searchInput, key) in actions.searchFields.searchInputs"
-                :key="key"
-                @select.prevent
-                @click.prevent="actions.searchFields.onClick(searchInput.key)"
+              v-for="(searchInput, key) in actions.searchFields.searchInputs"
+              :key="key"
+              @select.prevent
+              @click.prevent="actions.searchFields.onClick(searchInput.key)"
             >
               {{ searchInput.label }}
             </DropdownMenuItem>
@@ -28,22 +28,22 @@
       </DropdownMenuSub>
       <DropdownMenuSub>
         <DropdownMenuSubTrigger
-            v-if="'toggleColumns' in actions && actions.toggleColumns.show"
+          v-if="'toggleColumns' in actions && actions.toggleColumns.show"
         >
-          <Eye />{{ translations.show_hide_columns ?? 'Show / Hide columns' }}</DropdownMenuSubTrigger>
+          <Eye />{{ translations.show_hide_columns ?? 'Show / Hide columns' }}
+        </DropdownMenuSubTrigger>
         <DropdownMenuPortal>
           <DropdownMenuSubContent>
             <DropdownMenuCheckboxItem
-                v-for="(column, key) in actions.toggleColumns.columns"
-                v-show="column.can_be_hidden"
-                :key="key"
+              v-for="(column, key) in actions.toggleColumns.columns"
+              v-show="column.can_be_hidden"
+              :key="key"
               :model-value="!column.hidden"
-                @select.prevent
+              @select.prevent
               @click.prevent="actions.toggleColumns.onChange(column.key, column.hidden)"
             >
-
-                {{ column.label }}
-              </DropdownMenuCheckboxItem>
+              {{ column.label }}
+            </DropdownMenuCheckboxItem>
           </DropdownMenuSubContent>
         </DropdownMenuPortal>
       </DropdownMenuSub>
@@ -72,7 +72,7 @@ import {
     DropdownMenuSubContent,
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
-  DropdownMenuCheckboxItem
+    DropdownMenuCheckboxItem
 } from "../components/ui/dropdown-menu";
 import { Button } from "../components/ui/button";
 import { Search, EllipsisVertical, X, Eye } from "lucide-vue-next";
