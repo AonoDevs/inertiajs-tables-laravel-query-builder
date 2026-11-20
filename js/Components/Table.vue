@@ -162,6 +162,7 @@
         :has-data="hasData"
         :can-be-reset="canBeReset"
         :reset-query="resetQuery"
+        :processing="isVisiting"
       >
         <slot name="table">
           <TableWrapper>
