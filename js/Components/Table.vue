@@ -137,23 +137,23 @@
             </slot>
           </component>
         </div>
-      </slot>
 
-      <slot
-        name="tableSearchRows"
-        :has-search-rows-with-value="queryBuilderProps.hasSearchInputsWithValue"
-        :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
-        :forced-visible-search-inputs="forcedVisibleSearchInputs"
-        :on-change="changeSearchInputValue"
-      >
-        <TableSearchRows
-          v-if="queryBuilderProps.hasSearchInputsWithValue || forcedVisibleSearchInputs.length > 0"
+        <slot
+          name="tableSearchRows"
+          :has-search-rows-with-value="queryBuilderProps.hasSearchInputsWithValue"
           :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
           :forced-visible-search-inputs="forcedVisibleSearchInputs"
           :on-change="changeSearchInputValue"
-          :on-remove="disableSearchInput"
-          :color="color"
-        />
+        >
+          <TableSearchRows
+            v-if="queryBuilderProps.hasSearchInputsWithValue || forcedVisibleSearchInputs.length > 0"
+            :search-inputs="queryBuilderProps.searchInputsWithoutGlobal"
+            :forced-visible-search-inputs="forcedVisibleSearchInputs"
+            :on-change="changeSearchInputValue"
+            :on-remove="disableSearchInput"
+            :color="color"
+          />
+        </slot>
       </slot>
 
       <slot
