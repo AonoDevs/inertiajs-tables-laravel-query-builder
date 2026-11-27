@@ -20,7 +20,7 @@ import { inject } from "vue";
 import { twMerge } from "tailwind-merge";
 import { get_theme_part } from "../../helpers.js";
 import { Switch } from "../../components/ui/switch";
-import { X } from "lucide-vue-next";
+import { X } from "@lucide/vue";
 
 const props = defineProps({
     filter: {

@@ -1,6 +1,6 @@
 <script setup>
 import { reactiveOmit } from "@vueuse/core";
-import { MoreHorizontal } from "lucide-vue-next";
+import { MoreHorizontal } from "@lucide/vue";
 import { PaginationEllipsis } from "reka-ui";
 import { cn } from "../../../lib/utils";
 

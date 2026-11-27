@@ -75,7 +75,7 @@ import {
     DropdownMenuCheckboxItem
 } from "../components/ui/dropdown-menu";
 import { Button } from "../components/ui/button";
-import { Search, EllipsisVertical, X, Eye } from "lucide-vue-next";
+import { Search, EllipsisVertical, X, Eye } from "@lucide/vue";
 
 const translations = getTranslations();
 

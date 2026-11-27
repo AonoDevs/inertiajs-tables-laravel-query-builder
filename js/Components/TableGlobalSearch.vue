@@ -1,22 +1,21 @@
 <template>
-  <div class="relative">
-    <Input
-      class="pl-8"
+  <InputGroup>
+    <InputGroupAddon align="inline-start">
+      <Search />
+    </InputGroupAddon>
+    <InputGroupInput
       :placeholder="label"
       :model-value="value"
       type="text"
       name="global"
       @update:model-value="onChange"
     />
-    <div class="absolute inset-y-0 start-0 pl-2 flex items-center pointer-events-none">
-      <Search class="size-4.5" />
-    </div>
-  </div>
+  </InputGroup>
 </template>
 
 <script setup>
-import { Input } from "../components/ui/input/index.js";
-import { Search } from "lucide-vue-next";
+import { Search } from "@lucide/vue";
+import { InputGroup, InputGroupAddon } from "../components/ui/input-group";
 
 const props = defineProps({
     label: {

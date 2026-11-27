@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { Search } from "lucide-vue-next";
+import { Search } from "@lucide/vue";
 import {
     DropdownMenu,
     DropdownMenuContent,

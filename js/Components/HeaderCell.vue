@@ -29,7 +29,7 @@
 <script setup>
 import { TableHead } from "../components/ui/table/index.js";
 import { Button } from "../components/ui/button/index.js";
-import { ArrowDownUp, MoveUp, MoveDown } from "lucide-vue-next";
+import { ArrowDownUp, MoveUp, MoveDown } from "@lucide/vue";
 import { computed } from "vue";
 
 const props = defineProps({

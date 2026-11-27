@@ -97,7 +97,7 @@ import {
     DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import { Button } from "../components/ui/button/index.js";
-import { Funnel } from "lucide-vue-next";
+import { Funnel } from "@lucide/vue";
 import { NativeSelect, NativeSelectOption } from "../components/ui/native-select/index.ts";
 
 const props = defineProps({

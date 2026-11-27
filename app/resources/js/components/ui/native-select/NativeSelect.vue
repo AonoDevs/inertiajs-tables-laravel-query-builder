@@ -1,6 +1,6 @@
 <script setup>
 import { reactiveOmit, useVModel } from "@vueuse/core";
-import { ChevronDownIcon } from "lucide-vue-next";
+import { ChevronDownIcon } from "@lucide/vue";
 import { cn } from "@/lib/utils";
 
 defineOptions({
