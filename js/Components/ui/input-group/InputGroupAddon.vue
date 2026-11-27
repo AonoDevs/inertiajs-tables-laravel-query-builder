@@ -1,5 +1,5 @@
 <script setup>
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import { inputGroupAddonVariants } from ".";
 
 const props = defineProps({

@@ -3,7 +3,7 @@ import { ChevronRightIcon } from "@lucide/vue";
 import { reactiveOmit } from "@vueuse/core";
 import { cn } from "cn";
 import { PaginationLast, useForwardProps } from "reka-ui";
-import { buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '../button';
 
 const props = defineProps({
   asChild: { type: Boolean, required: false },
