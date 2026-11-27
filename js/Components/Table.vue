@@ -12,7 +12,7 @@
         name="tableGlobalFilter"
         :has-global-search="queryBuilderProps.globalSearch"
         :global-search-label="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.label : null"
-        :global-search-value="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.value : null"
+        :global-search-value="globalSearch"
         :global-search-on-change="changeGlobalSearchValue"
 
         :has-filters="queryBuilderProps.hasFilters"
@@ -34,14 +34,14 @@
               name="tableGlobalSearch"
               :has-global-search="queryBuilderProps.globalSearch"
               :label="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.label : null"
-              :value="queryBuilderProps.globalSearch ? queryBuilderProps.globalSearch.value : null"
+              :value="globalSearch"
               :on-change="changeGlobalSearchValue"
             >
               <TableGlobalSearch
                 v-if="queryBuilderProps.globalSearch"
                 class="grow"
                 :label="queryBuilderProps.globalSearch.label"
-                :value="queryBuilderProps.globalSearch.value"
+                :value="globalSearch"
                 :on-change="changeGlobalSearchValue"
                 :color="color"
               />
@@ -372,6 +372,8 @@ const app = getCurrentInstance();
 
 const updates = ref(0);
 
+const globalSearch = ref(null);
+
 const queryBuilderProps = computed(() => {
     let data = usePage().props.queryBuilderProps
         ? { ...usePage().props.queryBuilderProps[props.name] } || {}
@@ -545,6 +547,7 @@ function resetQuery() {
     queryBuilderData.value.sort = null;
     queryBuilderData.value.cursor = null;
     queryBuilderData.value.page = 1;
+    globalSearch.value = null;
 }
 
 const debounceTimeouts = {};
