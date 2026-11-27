@@ -15,7 +15,7 @@
 
 <script setup>
 import { Search } from "@lucide/vue";
-import { InputGroup, InputGroupAddon } from "../components/ui/input-group";
+import { InputGroup, InputGroupInput, InputGroupAddon } from "../components/ui/input-group";
 
 const props = defineProps({
     label: {
