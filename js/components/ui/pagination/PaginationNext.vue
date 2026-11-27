@@ -1,21 +1,23 @@
 <script setup>
-import { reactiveOmit } from "@vueuse/core";
 import { ChevronRightIcon } from "@lucide/vue";
+import { reactiveOmit } from "@vueuse/core";
+import { cn } from "cn";
 import { PaginationNext, useForwardProps } from "reka-ui";
-import { cn } from "../../../lib/utils";
-import { buttonVariants } from "../button";
-import { getTranslations } from "../../../translations.js";
+import { buttonVariants } from '@/components/ui/button';
 
 const props = defineProps({
-    asChild: { type: Boolean, required: false },
-    as: { type: null, required: false },
-    size: { type: null, required: false, default: "default" },
-    class: { type: null, required: false },
+  asChild: { type: Boolean, required: false },
+  as: { type: [String, Object, Function], required: false },
+  size: { type: null, required: false, default: "default" },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
 });
 
 const delegatedProps = reactiveOmit(props, "class", "size");
 const forwarded = useForwardProps(delegatedProps);
-const translations = getTranslations();
 </script>
 
 <template>
@@ -31,7 +33,7 @@ const translations = getTranslations();
     v-bind="forwarded"
   >
     <slot>
-      <span class="hidden sm:block">{{ translations.next ?? 'Next' }}</span>
+      <span class="hidden sm:block">Next</span>
       <ChevronRightIcon />
     </slot>
   </PaginationNext>

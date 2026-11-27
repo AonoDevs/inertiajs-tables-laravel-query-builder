@@ -1,11 +1,12 @@
-<!-- @fallthroughAttributes true -->
-<!-- @strictTemplates true -->
-
 <script setup>
-import { cn } from "../../../lib/utils";
+import { cn } from "cn";
 
 const props = defineProps({
-    class: { type: null, required: false },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
 });
 </script>
 

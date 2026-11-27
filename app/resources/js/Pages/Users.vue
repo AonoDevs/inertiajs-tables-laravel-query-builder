@@ -14,7 +14,6 @@ defineProps<{
         :resource="users"
         :input-debounce-ms="50"
         :with-button-grouped-menu="true"
-        :withGroupedMenu="true"
     >
         <template #cell(actions)="{ item: user }">
             <a :href="`/users/${user.id}/edit`"> Edit </a>

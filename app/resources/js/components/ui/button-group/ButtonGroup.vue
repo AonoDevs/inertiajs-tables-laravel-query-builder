@@ -1,10 +1,14 @@
 <script setup>
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import { buttonGroupVariants } from ".";
 
 const props = defineProps({
-    class: { type: null, required: false },
-    orientation: { type: null, required: false },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
+  orientation: { type: null, required: false },
 });
 </script>
 
@@ -14,10 +18,7 @@ const props = defineProps({
     data-slot="button-group"
     :data-orientation="props.orientation"
     :class="
-      cn(
-        buttonGroupVariants({ orientation: props.orientation }),
-        props.class,
-      )
+      cn(buttonGroupVariants({ orientation: props.orientation }), props.class)
     "
   >
     <slot />

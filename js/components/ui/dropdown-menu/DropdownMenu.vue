@@ -1,17 +1,24 @@
-<script setup lang="ts">
-import { DropdownMenuRoot, type DropdownMenuRootEmits, type DropdownMenuRootProps, useForwardPropsEmits } from 'reka-ui'
+<script setup>
+import { DropdownMenuRoot, useForwardPropsEmits } from "reka-ui";
 
-const props = defineProps<DropdownMenuRootProps>()
-const emits = defineEmits<DropdownMenuRootEmits>()
+const props = defineProps({
+  defaultOpen: { type: Boolean, required: false },
+  open: { type: Boolean, required: false },
+  dir: { type: String, required: false },
+  modal: { type: Boolean, required: false },
+  unmountOnHide: { type: Boolean, required: false },
+});
+const emits = defineEmits(["update:open"]);
 
-const forwarded = useForwardPropsEmits(props, emits)
+const forwarded = useForwardPropsEmits(props, emits);
 </script>
 
 <template>
   <DropdownMenuRoot
+    v-slot="slotProps"
     data-slot="dropdown-menu"
     v-bind="forwarded"
   >
-    <slot />
+    <slot v-bind="slotProps" />
   </DropdownMenuRoot>
 </template>

@@ -1,28 +1,25 @@
-<script setup lang="ts">
-import { cn } from "../../../lib/utils";
-import {
-    DropdownMenuSeparator,
-    type DropdownMenuSeparatorProps,
-} from "reka-ui";
-import { computed, type HTMLAttributes } from "vue";
+<script setup>
+import { reactiveOmit } from "@vueuse/core";
+import { cn } from "cn";
+import { DropdownMenuSeparator } from "reka-ui";
 
-const props = defineProps<
-    DropdownMenuSeparatorProps & {
-        class?: HTMLAttributes["class"];
-    }
->();
-
-const delegatedProps = computed(() => {
-    const { class: _, ...delegated } = props;
-
-    return delegated;
+const props = defineProps({
+  asChild: { type: Boolean, required: false },
+  as: { type: [String, Object, Function], required: false },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
 });
+
+const delegatedProps = reactiveOmit(props, "class");
 </script>
 
 <template>
-    <DropdownMenuSeparator
-        data-slot="dropdown-menu-separator"
-        v-bind="delegatedProps"
-        :class="cn('bg-border -mx-1 my-1 h-px', props.class)"
-    />
+  <DropdownMenuSeparator
+    data-slot="dropdown-menu-separator"
+    v-bind="delegatedProps"
+    :class="cn('bg-border -mx-1 my-1 h-px', props.class)"
+  />
 </template>

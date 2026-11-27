@@ -41,7 +41,7 @@
                 v-if="queryBuilderProps.globalSearch"
                 class="grow"
                 :label="queryBuilderProps.globalSearch.label"
-                :value="globalSearch"
+                v-model="globalSearch"
                 :on-change="changeGlobalSearchValue"
                 :color="color"
               />
@@ -49,8 +49,10 @@
           </div>
 
           <component
+            v-if="queryBuilderProps.hasFilters || queryBuilderProps.hasSearchInputs || queryBuilderProps.hasToggleableColumns || canBeReset"
             :is="withButtonGroupedMenu ? ButtonGroup : 'div'"
             :class="{'contents': !withButtonGroupedMenu}"
+            class="ml-auto"
           >
             <slot
               name="tableFilter"

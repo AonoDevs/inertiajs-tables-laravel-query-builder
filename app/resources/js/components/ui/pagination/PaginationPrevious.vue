@@ -1,15 +1,19 @@
 <script setup>
-import { reactiveOmit } from "@vueuse/core";
 import { ChevronLeftIcon } from "@lucide/vue";
+import { reactiveOmit } from "@vueuse/core";
+import { cn } from "cn";
 import { PaginationPrev, useForwardProps } from "reka-ui";
-import { cn } from "../../../lib/utils";
-import { buttonVariants } from "../button";
+import { buttonVariants } from '@/components/ui/button';
 
 const props = defineProps({
-    asChild: { type: Boolean, required: false },
-    as: { type: null, required: false },
-    size: { type: null, required: false, default: "default" },
-    class: { type: null, required: false },
+  asChild: { type: Boolean, required: false },
+  as: { type: [String, Object, Function], required: false },
+  size: { type: null, required: false, default: "default" },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
 });
 
 const delegatedProps = reactiveOmit(props, "class", "size");

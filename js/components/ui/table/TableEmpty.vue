@@ -1,12 +1,16 @@
 <script setup>
 import { reactiveOmit } from "@vueuse/core";
-import { cn } from "../../../lib/utils";
+import { cn } from "cn";
 import TableCell from "./TableCell.vue";
 import TableRow from "./TableRow.vue";
 
 const props = defineProps({
-    class: { type: null, required: false },
-    colspan: { type: Number, required: false, default: 1 },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
+  colspan: { type: Number, required: false, default: 1 },
 });
 
 const delegatedProps = reactiveOmit(props, "class");

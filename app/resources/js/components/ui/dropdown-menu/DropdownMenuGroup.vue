@@ -1,11 +1,14 @@
-<script setup lang="ts">
-import { DropdownMenuGroup, type DropdownMenuGroupProps } from "reka-ui";
+<script setup>
+import { DropdownMenuGroup } from "reka-ui";
 
-const props = defineProps<DropdownMenuGroupProps>();
+const props = defineProps({
+  asChild: { type: Boolean, required: false },
+  as: { type: [String, Object, Function], required: false },
+});
 </script>
 
 <template>
-    <DropdownMenuGroup data-slot="dropdown-menu-group" v-bind="props">
-        <slot />
-    </DropdownMenuGroup>
+  <DropdownMenuGroup data-slot="dropdown-menu-group" v-bind="props">
+    <slot />
+  </DropdownMenuGroup>
 </template>

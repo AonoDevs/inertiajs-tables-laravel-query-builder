@@ -1,13 +1,17 @@
 <script setup>
-import { reactiveOmit } from "@vueuse/core";
 import { MoreHorizontal } from "@lucide/vue";
+import { reactiveOmit } from "@vueuse/core";
+import { cn } from "cn";
 import { PaginationEllipsis } from "reka-ui";
-import { cn } from "../../../lib/utils";
 
 const props = defineProps({
-    asChild: { type: Boolean, required: false },
-    as: { type: null, required: false },
-    class: { type: null, required: false },
+  asChild: { type: Boolean, required: false },
+  as: { type: [String, Object, Function], required: false },
+  class: {
+    type: [Boolean, null, String, Object, Array],
+    required: false,
+    skipCheck: true,
+  },
 });
 
 const delegatedProps = reactiveOmit(props, "class");
