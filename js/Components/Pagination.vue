@@ -5,7 +5,6 @@
   >
     <p
       v-if="!hasData || pagination.total < 1"
-      class="text-primary"
     >
       {{ translations.no_results_found }}
     </p>
@@ -72,7 +71,10 @@
           @update:page="(value) => onClick(pagination.links.find(link => link.label === value.toString())?.url)"
         >
           <PaginationContent v-slot="{ items }">
-            <PaginationPrevious />
+            <PaginationPrevious>
+              <ChevronLeftIcon />
+              <span class="hidden sm:block">{{ translations.previous }}</span>
+            </PaginationPrevious>
 
             <template
               v-for="(item, index) in items"
@@ -89,7 +91,10 @@
               <PaginationEllipsis v-else />
             </template>
 
-            <PaginationNext />
+            <PaginationNext>
+              <span class="hidden sm:block">{{ translations.next }}</span>
+              <ChevronRightIcon />
+            </PaginationNext>
           </PaginationContent>
         </Pagination>
       </div>
@@ -109,6 +114,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "../components/ui/pagination";
+import { ChevronLeftIcon, ChevronRightIcon } from "@lucide/vue";
 
 const translations = getTranslations();
 
